@@ -2,6 +2,10 @@
 package bkapt.su1312m.WorldCup2014.Utils;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
+import android.telephony.TelephonyManager;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
@@ -82,5 +86,87 @@ public class NetworkUtils
             e.printStackTrace();
         }
         return resString;
+    }
+
+    public static void turnWifiOn(Context context) {
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        if (!wifiManager.isWifiEnabled()) {
+            wifiManager.setWifiEnabled(true);
+        }
+    }
+
+    public static void turnWifiOff(Context context) {
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        if (wifiManager.isWifiEnabled()) {
+            wifiManager.setWifiEnabled(false);
+        }
+    }
+
+    public static boolean getNetworkStatus(Context context) {
+        ConnectivityManager conMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (conMgr.getNetworkInfo(0).getState() == NetworkInfo.State.CONNECTED
+                || conMgr.getNetworkInfo(1).getState() == NetworkInfo.State.CONNECTED) {
+            return true;
+        } else if (conMgr.getNetworkInfo(0).getState() == NetworkInfo.State.DISCONNECTED
+                || conMgr.getNetworkInfo(1).getState() == NetworkInfo.State.DISCONNECTED) {
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+    public static enum NetworkType {
+        WIFI, EDGE, HSPA, WIMAX;
+    }
+
+    public static NetworkType getNetworkType(Context context) {
+        NetworkType networkType = NetworkType.HSPA;
+        // Check each connection type
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        /**
+         * WIFI
+         */
+
+        /** Check the connection **/
+        NetworkInfo network = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+        // Make sure the network is available
+        if (network != null && network.isAvailable() && network.isConnectedOrConnecting()) {
+            networkType = NetworkType.WIFI;
+        }
+
+        /**
+         * 2G/3G
+         */
+        /** Check the connection **/
+        network = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        // Show the right icon
+        if (network != null &&
+                (network.getSubtype() == TelephonyManager.NETWORK_TYPE_GPRS ||
+                        network.getSubtype() == TelephonyManager.NETWORK_TYPE_EDGE)) {
+            if (network.isAvailable() && network.isConnectedOrConnecting()) {
+                networkType = NetworkType.EDGE;
+            }
+        } else {
+            if (network.isAvailable() && network.isConnectedOrConnecting()) {
+                networkType = NetworkType.HSPA;
+            }
+        }
+
+        /**
+         * 4G
+         */
+
+        /** Check the connection **/
+        network = cm.getNetworkInfo(ConnectivityManager.TYPE_WIMAX);
+
+        // Make sure the network is available
+        if (network != null && network.isAvailable() && network.isConnectedOrConnecting()) {
+            networkType = NetworkType.HSPA;
+        }
+
+        return networkType;
     }
 }
