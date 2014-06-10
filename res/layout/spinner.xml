@@ -51,23 +51,20 @@
                     android:layout_marginLeft="20dp"
                     android:orientation="vertical" >
 
-                <TextView
-                        android:id="@+id/select"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="aa" />
-
                 <Spinner
                         android:id="@+id/spinner1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/down_spinner" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
+                android:id="@+id/liner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                >
 
             <TextView
                     android:id="@+id/textView4"
