@@ -12,7 +12,7 @@ public class PredictFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.main,
+		View rootView = inflater.inflate(R.layout.main3,
 				container, false);
 
 		return rootView;
