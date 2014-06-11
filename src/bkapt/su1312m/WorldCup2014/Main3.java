@@ -87,23 +87,11 @@ public class Main3 extends Fragment
         if (savedInstanceState == null) {
             // if's the first time created
 
-            replaceFragment(login, TAG_1);
+            ((MainActivity)getActivity()).replaceFragment(login, TAG_1);
         }
         return  view;
     }
-    public void addFragment(Fragment fragment, String TAG){
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager()
-                .beginTransaction();
-        fragmentTransaction.add(R.id.maincontainer, fragment, TAG);
-        fragmentTransaction.commit();
-    }
 
-    public void replaceFragment(Fragment fragment, String TAG){
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager()
-                .beginTransaction();
-        fragmentTransaction.replace(R.id.maincontainer, fragment, TAG);
-        fragmentTransaction.commit();
-    }
 
 
 }

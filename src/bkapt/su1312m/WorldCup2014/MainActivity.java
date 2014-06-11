@@ -7,6 +7,7 @@ import android.app.ActionBar.TabListener;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
@@ -75,4 +76,17 @@ public class MainActivity extends FragmentActivity implements TabListener {
 
 	}
 
+    public void addFragment(Fragment fragment, String TAG){
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager()
+                .beginTransaction();
+        fragmentTransaction.add(R.id.maincontainer, fragment, TAG);
+        fragmentTransaction.commit();
+    }
+
+    public void replaceFragment(Fragment fragment, String TAG){
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager()
+                .beginTransaction();
+        fragmentTransaction.replace(R.id.maincontainer, fragment, TAG);
+        fragmentTransaction.commit();
+    }
 }
