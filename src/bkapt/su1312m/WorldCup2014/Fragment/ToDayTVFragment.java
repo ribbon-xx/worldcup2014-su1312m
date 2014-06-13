@@ -14,7 +14,6 @@ import bkapt.su1312m.WorldCup2014.Adapters.TodayTVAdapter;
 import bkapt.su1312m.WorldCup2014.Adapters.TransparentProgressDialog;
 import bkapt.su1312m.WorldCup2014.R.id;
 import bkapt.su1312m.WorldCup2014.R.layout;
-import bkapt.su1312m.WorldCup2014.Utils.DateFomat;
 import bkapt.su1312m.WorldCup2014.Utils.Matches;
 import bkapt.su1312m.WorldCup2014.Utils.ServiceConfig;
 import bkapt.su1312m.WorldCup2014.Utils.ServiceHelper;
@@ -110,7 +109,7 @@ public class ToDayTVFragment extends Fragment {
 					R.layout.itemrowtodaytv, list);
 			lvtodaytv.setAdapter(adapter);
 			if (adapter.getCount() < 1) {
-				Toast.makeText(getActivity(), "Không Có Lịch Thi Đấu", 1)
+				Toast.makeText(getActivity(), "KhÃ´ng CÃ³ Lá»‹ch Thi Ä�áº¥u", 1)
 						.show();
 				Log.e("", "adapter"+adapter.getCount());
 			}
