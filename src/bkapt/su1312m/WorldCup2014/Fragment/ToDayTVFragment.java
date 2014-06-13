@@ -2,6 +2,7 @@ package bkapt.su1312m.WorldCup2014.Fragment;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.json.JSONArray;
@@ -10,8 +11,10 @@ import org.json.JSONObject;
 
 import bkapt.su1312m.WorldCup2014.R;
 import bkapt.su1312m.WorldCup2014.Adapters.TodayTVAdapter;
+import bkapt.su1312m.WorldCup2014.Adapters.TransparentProgressDialog;
 import bkapt.su1312m.WorldCup2014.R.id;
 import bkapt.su1312m.WorldCup2014.R.layout;
+import bkapt.su1312m.WorldCup2014.Utils.DateFomat;
 import bkapt.su1312m.WorldCup2014.Utils.Matches;
 import bkapt.su1312m.WorldCup2014.Utils.ServiceConfig;
 import bkapt.su1312m.WorldCup2014.Utils.ServiceHelper;
@@ -19,10 +22,12 @@ import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class ToDayTVFragment extends Fragment {
 	private TodayTVAdapter adapter;
@@ -30,7 +35,7 @@ public class ToDayTVFragment extends Fragment {
 	private static String url = "http://cup.tin9x.vn/lichthidau/get_all_match_current_day.php";
 	private Matches matches;
 	private ListView lvtodaytv;
-	private ProgressDialog pDialog;
+	private TransparentProgressDialog pDialog;
 	private static String TAG_DATA = "data";
 	private static String TAG_FLAGTEAM1 = "flag_team_1";
 	private static String TAG_FLAGTEAM2 = "flag_team_2";
@@ -56,8 +61,7 @@ public class ToDayTVFragment extends Fragment {
 
 		@Override
 		protected void onPreExecute() {
-			pDialog = new ProgressDialog(getActivity());
-			pDialog.setMessage("plea Waiting...");
+			pDialog = new TransparentProgressDialog(getActivity(),R.drawable.loading);
 			pDialog.setCancelable(false);
 			pDialog.show();
 		}
@@ -84,8 +88,8 @@ public class ToDayTVFragment extends Fragment {
 						String time_fight = c.getString(TAG_TIME);
 						String result = c.getString(TAG_RESULT);
 
-						matches = new Matches(flag_team_1, flag_team_2,
-								result, time_fight);
+						matches = new Matches(flag_team_1, flag_team_2, result,
+								time_fight);
 						list.add(matches);
 					}
 
@@ -105,6 +109,11 @@ public class ToDayTVFragment extends Fragment {
 			adapter = new TodayTVAdapter(getActivity(),
 					R.layout.itemrowtodaytv, list);
 			lvtodaytv.setAdapter(adapter);
+			if (adapter.getCount() < 1) {
+				Toast.makeText(getActivity(), "Không Có Lịch Thi Đấu", 1)
+						.show();
+				Log.e("", "adapter"+adapter.getCount());
+			}
 			super.onPostExecute(result);
 		}
 
