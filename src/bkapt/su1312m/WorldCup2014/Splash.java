@@ -15,7 +15,7 @@ public class Splash extends Activity {
 			@Override
 			public void run() {
 				Intent i = new Intent(getApplicationContext(),
-						MainActivity.class);
+						PagerFrafmentActivity.class);
 				startActivity(i);
 				finish();
 			}

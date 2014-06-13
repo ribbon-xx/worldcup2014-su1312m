@@ -3,7 +3,6 @@ package bkapt.su1312m.WorldCup2014.Fragment;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
