@@ -20,15 +20,24 @@
             android:text="Sự kiện dự đoán đội bóng vô địch World Cup 2014 đã kết thúc"
             android:textSize="20dp" />
 
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="GIẢI THƯỞNG"
+            android:layout_marginTop="100dp"
+            android:layout_gravity="center"
+            android:textSize="15dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:gravity="center" >
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="20dp" >
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="Giải Nhất" />
 
@@ -36,18 +45,17 @@
                 android:id="@+id/tv_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
                 android:text="Name1" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center" >
+            android:layout_marginLeft="50dp" >
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="Giải Nhì" />
 
@@ -55,17 +63,17 @@
                 android:id="@+id/tv_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
                 android:text="Name1" />
         </LinearLayout>
-         <LinearLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center" >
+            android:layout_marginLeft="50dp" >
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="Giải Ba" />
 
@@ -73,7 +81,6 @@
                 android:id="@+id/tv_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
                 android:text="Name1" />
         </LinearLayout>
     </LinearLayout>

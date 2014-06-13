@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
-public class Main3 extends Fragment
+public class RegisterFragment extends Fragment
 {
     private Button bt1, bt2,bt3;
     private FrameLayout container;

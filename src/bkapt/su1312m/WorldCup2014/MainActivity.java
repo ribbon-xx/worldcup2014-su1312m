@@ -1,19 +1,17 @@
 package bkapt.su1312m.WorldCup2014;
 
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.ActionBar.TabListener;
-import android.app.Activity;
-import android.app.FragmentTransaction;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBar.Tab;
+import android.support.v7.app.ActionBar.TabListener;
+import android.support.v7.app.ActionBarActivity;
 
-@SuppressLint("NewApi")
-public class MainActivity extends FragmentActivity implements TabListener {
+
+public class MainActivity extends ActionBarActivity implements TabListener {
 
 	private ViewPager viewPager;
 	private TabsPagerAdapter mAdapter;
@@ -26,7 +24,7 @@ public class MainActivity extends FragmentActivity implements TabListener {
 		setContentView(R.layout.activity_main);
 
 		viewPager = (ViewPager) findViewById(R.id.pager);
-		actionBar = getActionBar();
+		actionBar = getSupportActionBar();
 		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
 
 		viewPager.setAdapter(mAdapter);
@@ -61,32 +59,35 @@ public class MainActivity extends FragmentActivity implements TabListener {
 //		return true;
 //	}
 
-	@Override
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-
-	}
-
-	@Override
-	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		viewPager.setCurrentItem(tab.getPosition());
-	}
-
-	@Override
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-
-	}
-
     public void addFragment(Fragment fragment, String TAG){
-        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager()
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager()
                 .beginTransaction();
         fragmentTransaction.add(R.id.maincontainer, fragment, TAG);
         fragmentTransaction.commit();
     }
 
     public void replaceFragment(Fragment fragment, String TAG){
-        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager()
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager()
                 .beginTransaction();
         fragmentTransaction.replace(R.id.maincontainer, fragment, TAG);
         fragmentTransaction.commit();
     }
+
+	@Override
+	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		viewPager.setCurrentItem(tab.getPosition());
+	}
+
+	@Override
+	public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		
+	}
 }

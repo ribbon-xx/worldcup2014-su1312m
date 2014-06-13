@@ -3,9 +3,16 @@ package bkapt.su1312m.WorldCup2014;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.gson.Gson;
+
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.net.wifi.WpsInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Looper;
+import android.provider.Settings.Global;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -16,8 +23,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import bkapt.su1312m.WorldCup2014.Utils.NetworkUtils;
+import bkapt.su1312m.WorldCup2014.gsonObjects.RegisterObject;
 
 /**
  * Created by My pc on 9/6/2014.
@@ -28,15 +37,14 @@ public class Login extends Fragment {
 	private FragmentManager myFragmentManager;
 	final static String TAG_2 = "FRAGMENT_2";
 	final static String TAG_1 = "FRAGMENT_1";
-	final static String URL = "http://cup.tin9x.vn/user/register.php";
 	private EditText ed_name, ed_phone, ed_mail, ed_id_number, ed_add, ed_work;
-	private String Name, Phone, Mail, Id_Number, Add, Work;
 	public static final String TAG = Dudoan.class.getClass().getSimpleName();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.login, container, false);
+
 		bt_login = (Button) view.findViewById(R.id.bt_login);
 		frame = (FrameLayout) view.findViewById(R.id.frame);
 		ed_name = (EditText) view.findViewById(R.id.ed_name);
@@ -49,35 +57,43 @@ public class Login extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				Name = ed_name.getText().toString().trim();
-				Phone = ed_phone.getText().toString().trim();
-				Mail = ed_mail.getText().toString().trim();
-				Id_Number = ed_id_number.getText().toString().trim();
-				Add = ed_add.getText().toString().trim();
-				Work = ed_work.getText().toString().trim();
-				Log.d("AAAAAAAAAAAAAAAAAAAAAAA", Name + Phone + Mail
-						+ Id_Number + Add + Work);
-				if (Name.equals("") || Phone.equals("") || Mail.equals("")
-						|| Id_Number.equals("") || Add.equals("")
-						|| Work.equals("")) {
+				GlobalVariable.Name = ed_name.getText().toString().trim();
+				GlobalVariable.Phone = ed_phone.getText().toString().trim();
+
+				GlobalVariable.Mail = ed_mail.getText().toString().trim();
+				GlobalVariable.Id_Number = ed_id_number.getText().toString()
+						.trim();
+				GlobalVariable.Add = ed_add.getText().toString().trim();
+				GlobalVariable.Work = ed_work.getText().toString().trim();
+				Log.d("AAAAAAAAAAAAAAAAAAAAAAA", GlobalVariable.Name
+						+ GlobalVariable.Phone + GlobalVariable.Mail
+						+ GlobalVariable.Id_Number + GlobalVariable.Add
+						+ GlobalVariable.Work);
+				if (GlobalVariable.Name.equals("")
+						|| GlobalVariable.Phone.equals("")
+						|| GlobalVariable.Mail.equals("")
+						|| GlobalVariable.Id_Number.equals("")
+						|| GlobalVariable.Add.equals("")
+						|| GlobalVariable.Work.equals("")) {
 					Toast.makeText(getActivity(), "Ban chua nhap du thong tin",
 							Toast.LENGTH_SHORT).show();
-				}
-				else {
-					final Dialog dialog = new Dialog(getActivity());
-					dialog.setTitle("REGISTER");
-					dialog.setContentView(R.layout.dialog_login);
-					dialog.setCancelable(true);
-					dialog.show();
+				} else {
+					// String[] asyncTaskParams = new String[] {};
+					final Dialog dialog_confirm = new Dialog(getActivity());
+					dialog_confirm.setTitle("REGISTER");
+					dialog_confirm.setContentView(R.layout.dialog_login);
+					dialog_confirm.setCancelable(true);
+					dialog_confirm.show();
 					Button bt_yes, bt_cancel;
-					bt_yes = (Button) dialog.findViewById(R.id.bt_yes);
-					bt_cancel = (Button) dialog.findViewById(R.id.bt_no);
+					bt_yes = (Button) dialog_confirm.findViewById(R.id.bt_yes);
+					bt_cancel = (Button) dialog_confirm
+							.findViewById(R.id.bt_no);
 					bt_cancel.setOnClickListener(new OnClickListener() {
 
 						@Override
 						public void onClick(View v) {
 							// TODO Auto-generated method stub
-							dialog.dismiss();
+							dialog_confirm.dismiss();
 						}
 					});
 					bt_yes.setOnClickListener(new OnClickListener() {
@@ -85,48 +101,148 @@ public class Login extends Fragment {
 						@Override
 						public void onClick(View v) {
 							// TODO Auto-generated method stub
-							Thread thread = new Thread(new Runnable() {
-								public void run() {
-									NetworkUtils jsonConfig = new NetworkUtils(
-											getActivity());
-									final JSONObject jobj = new JSONObject();
-									try {
-										jobj.put("name", Name);
-										jobj.put("phone", Phone);
-										jobj.put("email", Mail);
-										jobj.put("number", Id_Number);
-										jobj.put("add", Add);
-										jobj.put("work", Work);
-
-										String response = jsonConfig.httpPost(
-												jobj.toString(), URL);
-										Log.d("JSONNNNNN",
-												"aaaa " + jobj.toString()
-														+ "---response: "
-														+ response);
-										if (response.contains("success")) {
-											Fragment fragment = new Dudoan();
-											((MainActivity) getActivity())
-													.replaceFragment(fragment,
-															TAG_2);
-										}
-									} catch (JSONException e) {
-										e.printStackTrace();
-									}
-								}
-							});
-							thread.start();
-							Toast.makeText(getActivity(), "Da dang ky",
-									Toast.LENGTH_SHORT).show();
-							dialog.dismiss();
+							dialog_confirm.dismiss();
+							Check_Register check_Register = new Check_Register(
+									getActivity());
+							check_Register.execute();
 						}
 					});
 				}
-				
 
 			}
 		});
 
 		return view;
+	}
+
+	public class Check_Register extends AsyncTask<String, String, Integer[]> {
+
+		private Context context;
+		private NetworkUtils jsonConfig;
+		private JSONObject jsonObject;
+		private ProgressDialog dialog;
+
+		public Check_Register(Context context) {
+			this.context = context;
+			dialog = new ProgressDialog(context);
+		}
+
+		@Override
+		protected Integer[] doInBackground(String... params) {
+			try {
+				jsonObject.put("phone", GlobalVariable.Phone);
+				jsonObject.put("name", GlobalVariable.Name);
+
+				jsonObject.put("email", GlobalVariable.Mail);
+				jsonObject.put("number", GlobalVariable.Id_Number);
+				jsonObject.put("add", GlobalVariable.Add);
+				jsonObject.put("work", GlobalVariable.Work);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			String response = jsonConfig.httpPost(jsonObject.toString(),
+					GlobalVariable.URL);
+			Log.d("JSONNNNNN", "aaaa " + jsonObject.toString()
+					+ "---response: " + response.toString());
+			// ---------
+			Gson gson = new Gson();
+			RegisterObject registerObject = gson.fromJson(response,
+					RegisterObject.class);
+
+			int exists = registerObject.exists;
+			int success = registerObject.success;
+			Integer[] results = new Integer[2];
+			results[0] = exists;
+			results[1] = success;
+			return results;
+		}
+
+		@Override
+		protected void onPreExecute() {
+
+			super.onPreExecute();
+			jsonConfig = new NetworkUtils(context);
+			jsonObject = new JSONObject();
+			dialog.setMessage("wating...");
+			dialog.show();
+		}
+
+		@Override
+		protected void onPostExecute(Integer[] result) {
+
+			super.onPostExecute(result);
+			dialog.dismiss();
+			if (result[0] == 1) {
+				getActivity().runOnUiThread(new Runnable() {
+
+					@Override
+					public void run() {
+						final Dialog dialog_id = new Dialog(getActivity());
+						dialog_id.setTitle("REGISTER");
+						dialog_id.setContentView(R.layout.dialog_login);
+						dialog_id.setCancelable(true);
+						dialog_id.show();
+						Button bt_yes1, bt_cancel1;
+						bt_yes1 = (Button) dialog_id.findViewById(R.id.bt_yes);
+						bt_cancel1 = (Button) dialog_id
+								.findViewById(R.id.bt_no);
+						TextView tv_caption1 = (TextView) dialog_id
+								.findViewById(R.id.tv_noti);
+						tv_caption1
+								.setText("Số chứng minh của bạn đã được đăng ký");
+
+						bt_cancel1.setOnClickListener(new OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								dialog_id.dismiss();
+							}
+						});
+						bt_yes1.setOnClickListener(new OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								Fragment fragment = new Dudoan();
+								((MainActivity) getActivity()).replaceFragment(
+										fragment, TAG_2);
+								dialog_id.dismiss();
+							}
+						});
+					}
+				});
+			}
+			if (result[0] == 0) {
+				if (result[1] == 0) {
+					Fragment fragment = new Dudoan();
+					((MainActivity) getActivity()).replaceFragment(fragment,
+							TAG_2);
+					Toast.makeText(getActivity(), "Ban da dang ky thanh cong",
+							Toast.LENGTH_SHORT).show();
+				}
+				
+//				if (result[1] == 1) {
+//
+//					final Dialog dialog2 = new Dialog(getActivity());
+//					dialog2.setTitle("REGISTER");
+//					dialog2.setContentView(R.layout.existsidnumber_dialog);
+//					dialog2.setCancelable(true);
+//					dialog2.show();
+//					TextView tv_caption2 = (TextView) dialog2
+//							.findViewById(R.id.textView1);
+//					Button bt_ok2 = (Button) dialog2.findViewById(R.id.button1);
+//					bt_ok2.setOnClickListener(new OnClickListener() {
+//
+//						@Override
+//						public void onClick(View v) {
+//							// TODO Auto-generated
+//							// method stub
+//							dialog2.dismiss();
+//						}
+//					});
+//				}
+
+			}
+		}
+
 	}
 }

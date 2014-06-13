@@ -6,6 +6,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
+import android.util.Log;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
@@ -74,11 +76,12 @@ public class NetworkUtils
             HttpPost httpPost = new HttpPost(url);
 
             StringEntity entity = new StringEntity(json, HTTP.UTF_8);
-            entity.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+//            entity.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
             httpPost.setEntity(entity);
 
             httpResponse = client.execute(httpPost);
             int responseCode = httpResponse.getStatusLine().getStatusCode();
+            Log.e("REpon","reaaaaa "+responseCode);
             HttpEntity response = httpResponse.getEntity();
             resString = EntityUtils.toString(response, HTTP.UTF_8);
 

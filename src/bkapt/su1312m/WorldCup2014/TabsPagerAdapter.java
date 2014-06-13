@@ -22,7 +22,7 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter {
 		case 1:
 			return new AllMatchesFragment();
 		case 2:
-			return new Main3();
+			return new RegisterFragment();
 		}
 
 		return null;
