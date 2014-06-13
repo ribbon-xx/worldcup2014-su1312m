@@ -106,7 +106,7 @@ public class Login extends Fragment {
 														+ response);
 										if (response.contains("success")) {
 											Fragment fragment = new Dudoan();
-											((MainActivity) getActivity())
+											((PagerFrafmentActivity) getActivity())
 													.replaceFragment(fragment,
 															TAG_2);
 										}
