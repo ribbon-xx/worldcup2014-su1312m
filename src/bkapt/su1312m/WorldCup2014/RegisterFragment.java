@@ -119,7 +119,7 @@ public class RegisterFragment extends Fragment
         if (savedInstanceState == null) {
             // if's the first time created
 
-            ((MainActivity)getActivity()).replaceFragment(login, TAG_1);
+            ((PagerFrafmentActivity)getActivity()).replaceFragment(login, TAG_1);
         }
         return  view;
     }
