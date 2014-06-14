@@ -11,18 +11,19 @@ import bkapt.su1312m.WorldCup2014.Utils.Matches;
 
 import java.util.ArrayList;
 
-public class TodayTVAdapter extends ArrayAdapter<Matches>{
+public class TodayTVAdapter extends ArrayAdapter<Matches> {
 	private ArrayList<Matches> list;
 	private Context context;
-	public TodayTVAdapter(Context context, int resource,
-			ArrayList<Matches> list) {
-		super(context, resource,list);
+
+	public TodayTVAdapter(Context context, int resource, ArrayList<Matches> list) {
+		super(context, resource, list);
 		this.list = list;
 		context = context;
 	}
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		class Viewholder{
+		class Viewholder {
 			ImageView team1;
 			ImageView team2;
 			TextView nameteam1;
@@ -31,23 +32,29 @@ public class TodayTVAdapter extends ArrayAdapter<Matches>{
 			TextView datetime;
 		}
 		Viewholder viewholder;
-		if(convertView == null){
-			convertView =  View.inflate(getContext(), R.layout.itemrowtodaytv, null);
+		if (convertView == null) {
+			convertView = View.inflate(getContext(), R.layout.itemrowtodaytv,
+					null);
 		}
 		Matches obj = getItem(position);
-		if(obj != null){
-			
+		if (obj != null) {
+
 			viewholder = new Viewholder();
 			viewholder.team1 = (ImageView) convertView.findViewById(R.id.team1);
 			viewholder.team2 = (ImageView) convertView.findViewById(R.id.team2);
-			viewholder.nameteam1 = (TextView) convertView.findViewById(R.id.tvNameteam1);
-			viewholder.nameteam2 = (TextView) convertView.findViewById(R.id.tvNameteam2);
-			viewholder.result = (TextView) convertView.findViewById(R.id.tvResult);
-			viewholder.datetime = (TextView) convertView.findViewById(R.id.tvDatetime);
+			viewholder.nameteam1 = (TextView) convertView
+					.findViewById(R.id.tvNameteam1);
+			viewholder.nameteam2 = (TextView) convertView
+					.findViewById(R.id.tvNameteam2);
+			viewholder.result = (TextView) convertView
+					.findViewById(R.id.tvResult);
+			viewholder.datetime = (TextView) convertView
+					.findViewById(R.id.tvDatetime);
 			viewholder.nameteam1.setText(obj.getNameteam1());
 			viewholder.nameteam2.setText(obj.getNameteam2());
 			viewholder.result.setText(obj.getResult());
 			viewholder.datetime.setText(obj.getDatetime());
+
             if (obj.getNameteam1().equals("brazil")) {
                 viewholder.team1.setBackgroundResource(R.drawable.icon_brazil);
 

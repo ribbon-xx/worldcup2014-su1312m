@@ -8,10 +8,13 @@ import com.google.gson.Gson;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.net.wifi.WpsInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Looper;
+import android.preference.PreferenceManager;
 import android.provider.Settings.Global;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -220,5 +223,14 @@ public class Login extends Fragment {
 			}
 		}
 
+	}
+
+	private void savePreferences(String key, int value) {
+		// TODO Auto-generated method stub
+		SharedPreferences sp = PreferenceManager
+				.getDefaultSharedPreferences(getActivity());
+		Editor edit = sp.edit();
+		edit.putInt(key, value);
+		edit.commit();
 	}
 }
