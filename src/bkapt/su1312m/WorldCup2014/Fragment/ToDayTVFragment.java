@@ -85,7 +85,6 @@ public class ToDayTVFragment extends Fragment {
 						String flag_team_2 = c.getString(TAG_FLAGTEAM2);
 						String time_fight = c.getString(TAG_TIME);
 						String result = c.getString(TAG_RESULT);
-
 						matches = new Matches(flag_team_1, flag_team_2, result,
 								time_fight);
 						list.add(matches);
