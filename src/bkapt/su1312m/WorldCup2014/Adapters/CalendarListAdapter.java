@@ -67,20 +67,20 @@ public class CalendarListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.list_item, null);
+            convertView = infalInflater.inflate(R.layout.itemrowtodaytv, null);
         }
 
         TextView txtListChild = (TextView) convertView
-                .findViewById(R.id.lblListItem);
+                .findViewById(R.id.tvDatetime);
         TextView txtListChildTeam1 = (TextView) convertView
-                .findViewById(R.id.txtTeam1);
+                .findViewById(R.id.tvNameteam1);
         TextView txtListChildTeam2 = (TextView) convertView
-                .findViewById(R.id.txtTeam2);
+                .findViewById(R.id.tvNameteam2);
         TextView txtListChildResuft = (TextView) convertView
-                .findViewById(R.id.txtResuft);
+                .findViewById(R.id.tvResult);
 
-        ImageView ivFlag1 = (ImageView) convertView.findViewById(R.id.ivFlag1);
-        ImageView ivFlag2 = (ImageView) convertView.findViewById(R.id.ivFlag2);
+        ImageView ivFlag1 = (ImageView) convertView.findViewById(R.id.team1);
+        ImageView ivFlag2 = (ImageView) convertView.findViewById(R.id.team2);
 
         txtListChild.setText(this._listDataChild.get(
                 this._listDataHeader.get(groupPosition)).get(childPosition));
@@ -209,6 +209,7 @@ public class CalendarListAdapter extends BaseExpandableListAdapter {
             iv.setImageResource(R.drawable.icon_korea);
 
         } else {
+            iv.setImageResource(R.drawable.icon_noname);
         }
     }
 

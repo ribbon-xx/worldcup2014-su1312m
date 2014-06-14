@@ -1,4 +1,4 @@
-package bkapt.su1312m.WorldCup2014;
+﻿package bkapt.su1312m.WorldCup2014;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -153,9 +153,8 @@ public class Login extends Fragment {
 
 			int exists = registerObject.exists;
 			int success = registerObject.success;
-			Integer[] results = new Integer[2];
+			Integer[] results = new Integer[1];
 			results[0] = exists;
-			results[1] = success;
 			return results;
 		}
 
@@ -212,35 +211,12 @@ public class Login extends Fragment {
 				});
 			}
 			if (result[0] == 0) {
-				if (result[1] == 0) {
+
 					Fragment fragment = new Dudoan();
 					((MainActivity) getActivity()).replaceFragment(fragment,
 							TAG_2);
 					Toast.makeText(getActivity(), "Ban da dang ky thanh cong",
 							Toast.LENGTH_SHORT).show();
-				}
-				
-//				if (result[1] == 1) {
-//
-//					final Dialog dialog2 = new Dialog(getActivity());
-//					dialog2.setTitle("REGISTER");
-//					dialog2.setContentView(R.layout.existsidnumber_dialog);
-//					dialog2.setCancelable(true);
-//					dialog2.show();
-//					TextView tv_caption2 = (TextView) dialog2
-//							.findViewById(R.id.textView1);
-//					Button bt_ok2 = (Button) dialog2.findViewById(R.id.button1);
-//					bt_ok2.setOnClickListener(new OnClickListener() {
-//
-//						@Override
-//						public void onClick(View v) {
-//							// TODO Auto-generated
-//							// method stub
-//							dialog2.dismiss();
-//						}
-//					});
-//				}
-
 			}
 		}
 
