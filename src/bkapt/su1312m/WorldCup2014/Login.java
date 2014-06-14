@@ -8,10 +8,13 @@ import com.google.gson.Gson;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.net.wifi.WpsInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Looper;
+import android.preference.PreferenceManager;
 import android.provider.Settings.Global;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -219,30 +222,39 @@ public class Login extends Fragment {
 					Toast.makeText(getActivity(), "Ban da dang ky thanh cong",
 							Toast.LENGTH_SHORT).show();
 				}
-				
-//				if (result[1] == 1) {
-//
-//					final Dialog dialog2 = new Dialog(getActivity());
-//					dialog2.setTitle("REGISTER");
-//					dialog2.setContentView(R.layout.existsidnumber_dialog);
-//					dialog2.setCancelable(true);
-//					dialog2.show();
-//					TextView tv_caption2 = (TextView) dialog2
-//							.findViewById(R.id.textView1);
-//					Button bt_ok2 = (Button) dialog2.findViewById(R.id.button1);
-//					bt_ok2.setOnClickListener(new OnClickListener() {
-//
-//						@Override
-//						public void onClick(View v) {
-//							// TODO Auto-generated
-//							// method stub
-//							dialog2.dismiss();
-//						}
-//					});
-//				}
+
+				// if (result[1] == 1) {
+				//
+				// final Dialog dialog2 = new Dialog(getActivity());
+				// dialog2.setTitle("REGISTER");
+				// dialog2.setContentView(R.layout.existsidnumber_dialog);
+				// dialog2.setCancelable(true);
+				// dialog2.show();
+				// TextView tv_caption2 = (TextView) dialog2
+				// .findViewById(R.id.textView1);
+				// Button bt_ok2 = (Button) dialog2.findViewById(R.id.button1);
+				// bt_ok2.setOnClickListener(new OnClickListener() {
+				//
+				// @Override
+				// public void onClick(View v) {
+				// // TODO Auto-generated
+				// // method stub
+				// dialog2.dismiss();
+				// }
+				// });
+				// }
 
 			}
 		}
 
+	}
+
+	private void savePreferences(String key, int value) {
+		// TODO Auto-generated method stub
+		SharedPreferences sp = PreferenceManager
+				.getDefaultSharedPreferences(getActivity());
+		Editor edit = sp.edit();
+		edit.putInt(key, value);
+		edit.commit();
 	}
 }
