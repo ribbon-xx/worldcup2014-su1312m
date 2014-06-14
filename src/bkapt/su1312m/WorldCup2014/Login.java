@@ -1,4 +1,4 @@
-﻿package bkapt.su1312m.WorldCup2014;
+package bkapt.su1312m.WorldCup2014;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,193 +32,194 @@ import bkapt.su1312m.WorldCup2014.gsonObjects.RegisterObject;
  * Created by My pc on 9/6/2014.
  */
 public class Login extends Fragment {
-	private Button bt_login;
-	private FrameLayout frame;
-	private FragmentManager myFragmentManager;
-	final static String TAG_2 = "FRAGMENT_2";
-	final static String TAG_1 = "FRAGMENT_1";
-	private EditText ed_name, ed_phone, ed_mail, ed_id_number, ed_add, ed_work;
-	public static final String TAG = Dudoan.class.getClass().getSimpleName();
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.login, container, false);
+    private Button bt_login;
+    private FrameLayout frame;
+    private FragmentManager myFragmentManager;
+    final static String TAG_2 = "FRAGMENT_2";
+    final static String TAG_1 = "FRAGMENT_1";
+    private EditText ed_name, ed_phone, ed_mail, ed_id_number, ed_add, ed_work;
+    public static final String TAG = Dudoan.class.getClass().getSimpleName();
 
-		bt_login = (Button) view.findViewById(R.id.bt_login);
-		frame = (FrameLayout) view.findViewById(R.id.frame);
-		ed_name = (EditText) view.findViewById(R.id.ed_name);
-		ed_phone = (EditText) view.findViewById(R.id.ed_phone);
-		ed_mail = (EditText) view.findViewById(R.id.ed_mail);
-		ed_id_number = (EditText) view.findViewById(R.id.ed_id_number);
-		ed_add = (EditText) view.findViewById(R.id.ed_add);
-		ed_work = (EditText) view.findViewById(R.id.ed_work);
-		bt_login.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.login, container, false);
 
-			@Override
-			public void onClick(View v) {
-				GlobalVariable.Name = ed_name.getText().toString().trim();
-				GlobalVariable.Phone = ed_phone.getText().toString().trim();
+        bt_login = (Button) view.findViewById(R.id.bt_login);
+        frame = (FrameLayout) view.findViewById(R.id.frame);
+        ed_name = (EditText) view.findViewById(R.id.ed_name);
+        ed_phone = (EditText) view.findViewById(R.id.ed_phone);
+        ed_mail = (EditText) view.findViewById(R.id.ed_mail);
+        ed_id_number = (EditText) view.findViewById(R.id.ed_id_number);
+        ed_add = (EditText) view.findViewById(R.id.ed_add);
+        ed_work = (EditText) view.findViewById(R.id.ed_work);
+        bt_login.setOnClickListener(new View.OnClickListener() {
 
-				GlobalVariable.Mail = ed_mail.getText().toString().trim();
-				GlobalVariable.Id_Number = ed_id_number.getText().toString()
-						.trim();
-				GlobalVariable.Add = ed_add.getText().toString().trim();
-				GlobalVariable.Work = ed_work.getText().toString().trim();
-				Log.d("AAAAAAAAAAAAAAAAAAAAAAA", GlobalVariable.Name
-						+ GlobalVariable.Phone + GlobalVariable.Mail
-						+ GlobalVariable.Id_Number + GlobalVariable.Add
-						+ GlobalVariable.Work);
-				if (GlobalVariable.Name.equals("")
-						|| GlobalVariable.Phone.equals("")
-						|| GlobalVariable.Mail.equals("")
-						|| GlobalVariable.Id_Number.equals("")
-						|| GlobalVariable.Add.equals("")
-						|| GlobalVariable.Work.equals("")) {
-					Toast.makeText(getActivity(), "Ban chua nhap du thong tin",
-							Toast.LENGTH_SHORT).show();
-				} else {
-					// String[] asyncTaskParams = new String[] {};
-					final Dialog dialog_confirm = new Dialog(getActivity());
-					dialog_confirm.setTitle("REGISTER");
-					dialog_confirm.setContentView(R.layout.dialog_login);
-					dialog_confirm.setCancelable(true);
-					dialog_confirm.show();
-					Button bt_yes, bt_cancel;
-					bt_yes = (Button) dialog_confirm.findViewById(R.id.bt_yes);
-					bt_cancel = (Button) dialog_confirm
-							.findViewById(R.id.bt_no);
-					bt_cancel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GlobalVariable.Name = ed_name.getText().toString().trim();
+                GlobalVariable.Phone = ed_phone.getText().toString().trim();
 
-						@Override
-						public void onClick(View v) {
-							// TODO Auto-generated method stub
-							dialog_confirm.dismiss();
-						}
-					});
-					bt_yes.setOnClickListener(new OnClickListener() {
+                GlobalVariable.Mail = ed_mail.getText().toString().trim();
+                GlobalVariable.Id_Number = ed_id_number.getText().toString()
+                        .trim();
+                GlobalVariable.Add = ed_add.getText().toString().trim();
+                GlobalVariable.Work = ed_work.getText().toString().trim();
+                Log.d("AAAAAAAAAAAAAAAAAAAAAAA", GlobalVariable.Name
+                        + GlobalVariable.Phone + GlobalVariable.Mail
+                        + GlobalVariable.Id_Number + GlobalVariable.Add
+                        + GlobalVariable.Work);
+                if (GlobalVariable.Name.equals("")
+                        || GlobalVariable.Phone.equals("")
+                        || GlobalVariable.Mail.equals("")
+                        || GlobalVariable.Id_Number.equals("")
+                        || GlobalVariable.Add.equals("")
+                        || GlobalVariable.Work.equals("")) {
+                    Toast.makeText(getActivity(), "Ban chua nhap du thong tin",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    // String[] asyncTaskParams = new String[] {};
+                    final Dialog dialog_confirm = new Dialog(getActivity());
+                    dialog_confirm.setTitle("REGISTER");
+                    dialog_confirm.setContentView(R.layout.dialog_login);
+                    dialog_confirm.setCancelable(true);
+                    dialog_confirm.show();
+                    Button bt_yes, bt_cancel;
+                    bt_yes = (Button) dialog_confirm.findViewById(R.id.bt_yes);
+                    bt_cancel = (Button) dialog_confirm
+                            .findViewById(R.id.bt_no);
+                    bt_cancel.setOnClickListener(new OnClickListener() {
 
-						@Override
-						public void onClick(View v) {
-							// TODO Auto-generated method stub
-							dialog_confirm.dismiss();
-							Check_Register check_Register = new Check_Register(
-									getActivity());
-							check_Register.execute();
-						}
-					});
-				}
+                        @Override
+                        public void onClick(View v) {
+                            // TODO Auto-generated method stub
+                            dialog_confirm.dismiss();
+                        }
+                    });
+                    bt_yes.setOnClickListener(new OnClickListener() {
 
-			}
-		});
+                        @Override
+                        public void onClick(View v) {
+                            // TODO Auto-generated method stub
+                            dialog_confirm.dismiss();
+                            Check_Register check_Register = new Check_Register(
+                                    getActivity());
+                            check_Register.execute();
+                        }
+                    });
+                }
 
-		return view;
-	}
+            }
+        });
 
-	public class Check_Register extends AsyncTask<String, String, Integer[]> {
+        return view;
+    }
 
-		private Context context;
-		private NetworkUtils jsonConfig;
-		private JSONObject jsonObject;
-		private ProgressDialog dialog;
+    public class Check_Register extends AsyncTask<String, String, Integer[]> {
 
-		public Check_Register(Context context) {
-			this.context = context;
-			dialog = new ProgressDialog(context);
-		}
+        private Context context;
+        private NetworkUtils jsonConfig;
+        private JSONObject jsonObject;
+        private ProgressDialog dialog;
 
-		@Override
-		protected Integer[] doInBackground(String... params) {
-			try {
-				jsonObject.put("phone", GlobalVariable.Phone);
-				jsonObject.put("name", GlobalVariable.Name);
+        public Check_Register(Context context) {
+            this.context = context;
+            dialog = new ProgressDialog(context);
+        }
 
-				jsonObject.put("email", GlobalVariable.Mail);
-				jsonObject.put("number", GlobalVariable.Id_Number);
-				jsonObject.put("add", GlobalVariable.Add);
-				jsonObject.put("work", GlobalVariable.Work);
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        @Override
+        protected Integer[] doInBackground(String... params) {
+            try {
+                jsonObject.put("phone", GlobalVariable.Phone);
+                jsonObject.put("name", GlobalVariable.Name);
 
-			String response = jsonConfig.httpPost(jsonObject.toString(),
-					GlobalVariable.URL);
-			Log.d("JSONNNNNN", "aaaa " + jsonObject.toString()
-					+ "---response: " + response.toString());
-			// ---------
-			Gson gson = new Gson();
-			RegisterObject registerObject = gson.fromJson(response,
-					RegisterObject.class);
+                jsonObject.put("email", GlobalVariable.Mail);
+                jsonObject.put("number", GlobalVariable.Id_Number);
+                jsonObject.put("add", GlobalVariable.Add);
+                jsonObject.put("work", GlobalVariable.Work);
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 
-			int exists = registerObject.exists;
-			int success = registerObject.success;
-			Integer[] results = new Integer[1];
-			results[0] = exists;
-			return results;
-		}
+            String response = jsonConfig.httpPost(jsonObject.toString(),
+                    GlobalVariable.URL);
+            Log.d("JSONNNNNN", "aaaa " + jsonObject.toString()
+                    + "---response: " + response.toString());
+            // ---------
+            Gson gson = new Gson();
+            RegisterObject registerObject = gson.fromJson(response,
+                    RegisterObject.class);
 
-		@Override
-		protected void onPreExecute() {
+            int exists = registerObject.exists;
+            int success = registerObject.success;
+            Integer[] results = new Integer[1];
+            results[0] = exists;
+            return results;
+        }
 
-			super.onPreExecute();
-			jsonConfig = new NetworkUtils(context);
-			jsonObject = new JSONObject();
-			dialog.setMessage("wating...");
-			dialog.show();
-		}
+        @Override
+        protected void onPreExecute() {
 
-		@Override
-		protected void onPostExecute(Integer[] result) {
+            super.onPreExecute();
+            jsonConfig = new NetworkUtils(context);
+            jsonObject = new JSONObject();
+            dialog.setMessage("wating...");
+            dialog.show();
+        }
 
-			super.onPostExecute(result);
-			dialog.dismiss();
-			if (result[0] == 1) {
-				getActivity().runOnUiThread(new Runnable() {
+        @Override
+        protected void onPostExecute(Integer[] result) {
 
-					@Override
-					public void run() {
-						final Dialog dialog_id = new Dialog(getActivity());
-						dialog_id.setTitle("REGISTER");
-						dialog_id.setContentView(R.layout.dialog_login);
-						dialog_id.setCancelable(true);
-						dialog_id.show();
-						Button bt_yes1, bt_cancel1;
-						bt_yes1 = (Button) dialog_id.findViewById(R.id.bt_yes);
-						bt_cancel1 = (Button) dialog_id
-								.findViewById(R.id.bt_no);
-						TextView tv_caption1 = (TextView) dialog_id
-								.findViewById(R.id.tv_noti);
-						tv_caption1
-								.setText("Số chứng minh của bạn đã được đăng ký");
+            super.onPostExecute(result);
+            dialog.dismiss();
+            if (result[0] == 1) {
+                getActivity().runOnUiThread(new Runnable() {
 
-						bt_cancel1.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								dialog_id.dismiss();
-							}
-						});
-						bt_yes1.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								Fragment fragment = new Dudoan();
-								((MainActivity) getActivity()).replaceFragment(
-										fragment, TAG_2);
-								dialog_id.dismiss();
-							}
-						});
-					}
-				});
-			}
-			if (result[0] == 0) {
+                    @Override
+                    public void run() {
+                        final Dialog dialog_id = new Dialog(getActivity());
+                        dialog_id.setTitle("REGISTER");
+                        dialog_id.setContentView(R.layout.dialog_login);
+                        dialog_id.setCancelable(true);
+                        dialog_id.show();
+                        Button bt_yes1, bt_cancel1;
+                        bt_yes1 = (Button) dialog_id.findViewById(R.id.bt_yes);
+                        bt_cancel1 = (Button) dialog_id
+                                .findViewById(R.id.bt_no);
+                        TextView tv_caption1 = (TextView) dialog_id
+                                .findViewById(R.id.tv_noti);
+                        tv_caption1
+                                .setText("Số chứng minh của bạn đã được đăng ký");
 
-					Fragment fragment = new Dudoan();
-					((MainActivity) getActivity()).replaceFragment(fragment,
-							TAG_2);
-					Toast.makeText(getActivity(), "Ban da dang ky thanh cong",
-							Toast.LENGTH_SHORT).show();
-			}
-		}
+                        bt_cancel1.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog_id.dismiss();
+                            }
+                        });
+                        bt_yes1.setOnClickListener(new OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Fragment fragment = new Dudoan();
+                                ((MainActivity) getActivity()).replaceFragment(
+                                        fragment, TAG_2);
+                                dialog_id.dismiss();
+                            }
+                        });
+                    }
+                });
+            }
+            if (result[0] == 0) {
 
-	}
+                Fragment fragment = new Dudoan();
+                ((MainActivity) getActivity()).replaceFragment(fragment,
+                        TAG_2);
+                Toast.makeText(getActivity(), "Ban da dang ky thanh cong",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
 }
