@@ -1,8 +1,10 @@
-package bkapt.su1312m.WorldCup2014;
+package bkapt.su1312m.WorldCup2014.Adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import bkapt.su1312m.WorldCup2014.Fragment.AllMatchesFragment;
+import bkapt.su1312m.WorldCup2014.Fragment.ToDayTVFragment;
+import bkapt.su1312m.WorldCup2014.Login;
 
 public class TabsPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -21,7 +23,7 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter {
 		case 1:
 			return new AllMatchesFragment();
 		case 2:
-			return new RegisterFragment();
+			return new Login();
 		}
 
 		return null;
