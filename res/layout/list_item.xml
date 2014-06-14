@@ -16,7 +16,7 @@
         android:textSize="17dip" />
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/ivFlag1"
         android:layout_width="50dp"
         android:layout_height="30dp"
         android:padding="5dp"
@@ -58,7 +58,7 @@
         android:textSize="17dp" />
 
     <ImageView
-        android:id="@+id/ImageView01"
+        android:id="@+id/ivFlag2"
         android:layout_width="50dp"
         android:layout_height="30dp"
         android:padding="5dp"
