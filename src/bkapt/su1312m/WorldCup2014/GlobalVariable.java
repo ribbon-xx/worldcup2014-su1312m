@@ -7,5 +7,6 @@ public class GlobalVariable {
 	public static String Id_Number = "";
 	public static String Add = "";
 	public static String Work = "";
+	public static String URL_FINISH = "http://cup.tin9x.vn/eventfinish/event_finish.php";
 	public static String URL = "http://cup.tin9x.vn/user/register1.php";
 }

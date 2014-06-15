@@ -1,25 +1,19 @@
 package bkapt.su1312m.WorldCup2014;
 
 import bkapt.su1312m.WorldCup2014.Adapters.TabsPagerAdapter;
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.ActionBar.TabListener;
-import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
-import android.widget.Toast;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBar.Tab;
+import android.support.v7.app.ActionBar.TabListener;
+import android.support.v7.app.ActionBarActivity;
 
-@SuppressLint("NewApi")
-public class PagerFrafmentActivity extends FragmentActivity implements
-		TabListener {
+public class PagerFrafmentActivity extends ActionBarActivity implements TabListener {
 
 	private ViewPager viewPager;
 	private TabsPagerAdapter mAdapter;
@@ -31,14 +25,16 @@ public class PagerFrafmentActivity extends FragmentActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		viewPager = (ViewPager) findViewById(R.id.pager);
-		actionBar = getActionBar();
+		actionBar = getSupportActionBar();
 		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
 
 		viewPager.setAdapter(mAdapter);
 		actionBar.setHomeButtonEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
 		actionBar.setStackedBackgroundDrawable(getResources().getDrawable(R.drawable.background_tabs));
 		actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.background_tabs));
+
 		for (String tab_name : tabs) {
 			actionBar.addTab(actionBar.newTab().setText(tab_name)
 					.setTabListener(this));
@@ -61,32 +57,41 @@ public class PagerFrafmentActivity extends FragmentActivity implements
 		});
 	}
 
-	@Override
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+//	@Override
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//		getMenuInflater().inflate(R.menu.main, menu);
+//		return true;
+//	}
 
+    public void addFragment(Fragment fragment, String TAG){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager()
+                .beginTransaction();
+        fragmentTransaction.add(R.id.maincontainer, fragment, TAG);
+        fragmentTransaction.commit();
+    }
+
+    public void replaceFragment(Fragment fragment, String TAG){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager()
+                .beginTransaction();
+        fragmentTransaction.replace(R.id.maincontainer, fragment, TAG);
+        fragmentTransaction.commit();
+    }
+
+	@Override
+	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+	public void onTabSelected(Tab tab, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
 		viewPager.setCurrentItem(tab.getPosition());
 	}
 
 	@Override
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-
-	}
-
-	public void addFragment(Fragment fragment, String TAG) {
-		android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager()
-				.beginTransaction();
-		fragmentTransaction.add(R.id.maincontainer, fragment, TAG);
-		fragmentTransaction.commit();
-	}
-
-	public void replaceFragment(Fragment fragment, String TAG) {
-		android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager()
-				.beginTransaction();
-		fragmentTransaction.replace(R.id.maincontainer, fragment, TAG);
-		fragmentTransaction.commit();
+	public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 }
