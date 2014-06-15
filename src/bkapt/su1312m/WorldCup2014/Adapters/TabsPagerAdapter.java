@@ -21,7 +21,7 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter {
 		case 0:
 			return new ToDayTVFragment();
 		case 1:
-			return new AllMatchesFragment();
+//			return new AllMatchesFragment();
 		case 2:
 			return new Login();
 		}

@@ -39,7 +39,7 @@ public class AllMatchesFragment extends Fragment {
 
         // get the listview
         expListView = (ExpandableListView) rootView.findViewById(R.id.lvExp);
-
+        
         // preparing list data
         prepareListData();
 
