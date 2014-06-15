@@ -1,4 +1,4 @@
-﻿package bkapt.su1312m.WorldCup2014;
+package bkapt.su1312m.WorldCup2014;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +34,7 @@ import com.google.gson.Gson;
  * Created by My pc on 9/6/2014.
  */
 public class Login extends Fragment {
+
 	private Button bt_login;
 	private FrameLayout frame;
 	private FragmentManager myFragmentManager;
@@ -249,4 +250,5 @@ public class Login extends Fragment {
 		edit.putInt(key, value);
 		edit.commit();
 	}
+
 }
