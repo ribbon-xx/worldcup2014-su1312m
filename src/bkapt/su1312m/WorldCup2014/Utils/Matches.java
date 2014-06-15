@@ -33,7 +33,6 @@ public class Matches {
 	
 	public Matches(String nameteam1, String nameteam2, String result,
 			String datetime) {
-		super();
 		this.nameteam1 = nameteam1;
 		this.nameteam2 = nameteam2;
 		this.result = result;
@@ -42,6 +41,12 @@ public class Matches {
 	public Matches() {
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "Matches [nameteam1=" + nameteam1 + ", nameteam2=" + nameteam2
+				+ ", result=" + result + ", datetime=" + datetime + "]";
+	}
+	
 	
 	
 

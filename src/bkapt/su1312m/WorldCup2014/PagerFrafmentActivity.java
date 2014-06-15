@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBar.TabListener;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 
 public class PagerFrafmentActivity extends ActionBarActivity implements TabListener {
 
@@ -25,6 +26,7 @@ public class PagerFrafmentActivity extends ActionBarActivity implements TabListe
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		viewPager = (ViewPager) findViewById(R.id.pager);
+		viewPager.setOffscreenPageLimit(3);
 		actionBar = getSupportActionBar();
 		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
 
@@ -93,5 +95,35 @@ public class PagerFrafmentActivity extends ActionBarActivity implements TabListe
 	public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		Log.e("", "onPause");
+		super.onPause();
+	}
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		Log.e("", "onResume");
+		super.onResume();
+	}
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		Log.e("", "onStart");
+		super.onStart();
+	}
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		Log.e("", "onStop");
+		super.onStop();
+	}
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		Log.e("", "onDestroy");
+		super.onDestroy();
 	}
 }

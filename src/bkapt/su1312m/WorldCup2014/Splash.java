@@ -28,7 +28,6 @@ public class Splash extends Activity {
 				}
 			},1000);
 		} else {
-			Toast.makeText(getApplicationContext(), "Cho em xin 500 mạng để load cái", Toast.LENGTH_LONG).show();
 			Intent i = new Intent(getApplicationContext(),
 					PagerFrafmentActivity.class);
 			startActivity(i);

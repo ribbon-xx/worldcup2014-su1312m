@@ -1,6 +1,9 @@
 package bkapt.su1312m.WorldCup2014.Adapters;
 
+import java.util.ArrayList;
+
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -9,8 +12,6 @@ import android.widget.TextView;
 import bkapt.su1312m.WorldCup2014.R;
 import bkapt.su1312m.WorldCup2014.Utils.Matches;
 
-import java.util.ArrayList;
-
 public class TodayTVAdapter extends ArrayAdapter<Matches> {
 	private ArrayList<Matches> list;
 	private Context context;
@@ -18,19 +19,22 @@ public class TodayTVAdapter extends ArrayAdapter<Matches> {
 	public TodayTVAdapter(Context context, int resource, ArrayList<Matches> list) {
 		super(context, resource, list);
 		this.list = list;
-		context = context;
+		this.context = context;
+		Log.e("Adapter", "TodayTVAdapter list: " + list.size());
+	}
+	
+	static class Viewholder {
+		ImageView team1;
+		ImageView team2;
+		TextView nameteam1;
+		TextView nameteam2;
+		TextView result;
+		TextView datetime;
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		class Viewholder {
-			ImageView team1;
-			ImageView team2;
-			TextView nameteam1;
-			TextView nameteam2;
-			TextView result;
-			TextView datetime;
-		}
+		
 		Viewholder viewholder;
 		if (convertView == null) {
 			convertView = View.inflate(getContext(), R.layout.itemrowtodaytv,
