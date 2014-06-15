@@ -62,9 +62,9 @@ public class UserDAO
 
 
     private static final String DATABASE_CREATE_USER = "Create Table "
-            + TABLE_USER_NAME + "(" + KEY_ID + " integer primary key autoincrement," + KEY_USER_NAME + " text" + KEY_PHONE + " integer,"
-            + KEY_EMAIL + " text," + KEY_IDE_NUMBER + " integer, "+KEY_ADDRESS+ "text" +KEY_WORK+ "text" +KEY_PLAYER_MOST_GOALS+ "text"
-            +KEY_GOALS_NUMBER+ "integer" +KEY_PLAYER_BEST+ "text" + KEY_SAME_RESULT + " integer" +  ")";
+            + TABLE_USER_NAME + "(" + KEY_ID + " integer primary key autoincrement," + KEY_USER_NAME + " text, " + KEY_PHONE + " integer,"
+            + KEY_EMAIL + " text," + KEY_IDE_NUMBER + " integer, "+KEY_ADDRESS+ " text," +KEY_WORK+ " text, " +KEY_PLAYER_MOST_GOALS+ " text, "
+            +KEY_GOALS_NUMBER+ " integer ," +KEY_PLAYER_BEST+ " text, " + KEY_SAME_RESULT + " integer" +  ")";
 
     public static void onCreate(SQLiteDatabase db) {
         db.execSQL(DATABASE_CREATE_USER);

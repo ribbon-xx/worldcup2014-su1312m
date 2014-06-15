@@ -35,7 +35,7 @@ public class GroupDAO
         return db.delete(TABLE_GROUP_NAME, null, null);
     }
 
-    public static final String TABLE_GROUP_NAME = "Group";
+    public static final String TABLE_GROUP_NAME = "Groups";
 
     public static final String KEY_ID = "groupId";
     public static final String KEY_GROUP_NAME = "groupName";

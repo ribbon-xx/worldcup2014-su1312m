@@ -34,6 +34,8 @@ import com.google.gson.Gson;
  * Created by My pc on 9/6/2014.
  */
 public class Login extends Fragment {
+	
+	private final String TAG = "Login";
 
 	private Button bt_login;
 	private FrameLayout frame;
@@ -43,7 +45,6 @@ public class Login extends Fragment {
 	private UserDAO userDAO;
 	private UserDTO userDTO;
 	private EditText ed_name, ed_phone, ed_mail, ed_id_number, ed_add, ed_work;
-	public static final String TAG = Dudoan.class.getClass().getSimpleName();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -107,9 +108,10 @@ public class Login extends Fragment {
 						@Override
 						public void onClick(View v) {
 							// TODO Auto-generated method stub
-							dialog_confirm.dismiss(); userDTO = new UserDTO(GlobalVariable.Name,Integer.parseInt(GlobalVariable.Phone),GlobalVariable.Mail, Integer.parseInt(GlobalVariable.Id_Number),GlobalVariable.Add, GlobalVariable.Work,0,"",0,"",0);
+							dialog_confirm.dismiss(); 
+							userDTO = new UserDTO(GlobalVariable.Name,Integer.parseInt(GlobalVariable.Phone),GlobalVariable.Mail, Integer.parseInt(GlobalVariable.Id_Number),GlobalVariable.Add, GlobalVariable.Work,0,"",0,"",0);
 	                           long result= userDAO.insertuser(userDTO);
-	                            Log.d("aaaaaa",""+result);
+	                            Log.d(TAG,"result: "+result);
 							
 							Check_Register check_Register = new Check_Register(
 									getActivity());
