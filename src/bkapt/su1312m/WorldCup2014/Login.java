@@ -3,16 +3,14 @@
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.google.gson.Gson;
-
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.net.wifi.WpsInfo;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Looper;
-import android.provider.Settings.Global;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -25,8 +23,12 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import bkapt.su1312m.WorldCup2014.DAO.UserDAO;
+import bkapt.su1312m.WorldCup2014.DTO.UserDTO;
 import bkapt.su1312m.WorldCup2014.Utils.NetworkUtils;
 import bkapt.su1312m.WorldCup2014.gsonObjects.RegisterObject;
+
+import com.google.gson.Gson;
 
 /**
  * Created by My pc on 9/6/2014.
@@ -37,6 +39,8 @@ public class Login extends Fragment {
 	private FragmentManager myFragmentManager;
 	final static String TAG_2 = "FRAGMENT_2";
 	final static String TAG_1 = "FRAGMENT_1";
+	private UserDAO userDAO;
+	private UserDTO userDTO;
 	private EditText ed_name, ed_phone, ed_mail, ed_id_number, ed_add, ed_work;
 	public static final String TAG = Dudoan.class.getClass().getSimpleName();
 
@@ -53,8 +57,9 @@ public class Login extends Fragment {
 		ed_id_number = (EditText) view.findViewById(R.id.ed_id_number);
 		ed_add = (EditText) view.findViewById(R.id.ed_add);
 		ed_work = (EditText) view.findViewById(R.id.ed_work);
+		userDAO = new UserDAO(getActivity());
 		bt_login.setOnClickListener(new View.OnClickListener() {
-
+		
 			@Override
 			public void onClick(View v) {
 				GlobalVariable.Name = ed_name.getText().toString().trim();
@@ -101,7 +106,10 @@ public class Login extends Fragment {
 						@Override
 						public void onClick(View v) {
 							// TODO Auto-generated method stub
-							dialog_confirm.dismiss();
+							dialog_confirm.dismiss(); userDTO = new UserDTO(GlobalVariable.Name,Integer.parseInt(GlobalVariable.Phone),GlobalVariable.Mail, Integer.parseInt(GlobalVariable.Id_Number),GlobalVariable.Add, GlobalVariable.Work,0,"",0,"",0);
+	                           long result= userDAO.insertuser(userDTO);
+	                            Log.d("aaaaaa",""+result);
+							
 							Check_Register check_Register = new Check_Register(
 									getActivity());
 							check_Register.execute();
@@ -153,8 +161,9 @@ public class Login extends Fragment {
 
 			int exists = registerObject.exists;
 			int success = registerObject.success;
-			Integer[] results = new Integer[1];
+			Integer[] results = new Integer[2];
 			results[0] = exists;
+			results[1] = success;
 			return results;
 		}
 
@@ -202,8 +211,8 @@ public class Login extends Fragment {
 							@Override
 							public void onClick(View v) {
 								Fragment fragment = new Dudoan();
-								((MainActivity) getActivity()).replaceFragment(
-										fragment, TAG_2);
+								((PagerFrafmentActivity) getActivity())
+										.replaceFragment(fragment, TAG_2);
 								dialog_id.dismiss();
 							}
 						});
@@ -211,14 +220,33 @@ public class Login extends Fragment {
 				});
 			}
 			if (result[0] == 0) {
-
+				if (result[1] == 0) {
+					// Fragment fragment = new Dudoan();
+					// ((PagerFrafmentActivity) getActivity()).replaceFragment(
+					// fragment, TAG_2);
+					Toast.makeText(
+							getActivity(),
+							"Dang ky khong thanh cong vui long kiem tra lai mang hoac duong truyen internet",
+							Toast.LENGTH_SHORT).show();
+				} else {
 					Fragment fragment = new Dudoan();
-					((MainActivity) getActivity()).replaceFragment(fragment,
-							TAG_2);
+					((PagerFrafmentActivity) getActivity()).replaceFragment(
+							fragment, TAG_2);
 					Toast.makeText(getActivity(), "Ban da dang ky thanh cong",
 							Toast.LENGTH_SHORT).show();
+				}
+
 			}
 		}
 
+	}
+
+	private void savePreferences(String key, int value) {
+		// TODO Auto-generated method stub
+		SharedPreferences sp = PreferenceManager
+				.getDefaultSharedPreferences(getActivity());
+		Editor edit = sp.edit();
+		edit.putInt(key, value);
+		edit.commit();
 	}
 }

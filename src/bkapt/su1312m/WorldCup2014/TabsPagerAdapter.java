@@ -3,6 +3,7 @@ package bkapt.su1312m.WorldCup2014;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import bkapt.su1312m.WorldCup2014.Fragment.AllMatchesFragment;
+import bkapt.su1312m.WorldCup2014.Fragment.ToDayTVFragment;
 
 public class TabsPagerAdapter extends FragmentStatePagerAdapter {
 
