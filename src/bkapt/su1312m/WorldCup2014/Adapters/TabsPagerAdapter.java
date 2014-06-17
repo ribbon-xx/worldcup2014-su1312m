@@ -3,14 +3,14 @@ package bkapt.su1312m.WorldCup2014.Adapters;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import bkapt.su1312m.WorldCup2014.Login;
+import bkapt.su1312m.WorldCup2014.RegisterFragment;
 import bkapt.su1312m.WorldCup2014.Fragment.AllMatchesFragment;
 import bkapt.su1312m.WorldCup2014.Fragment.ToDayTVFragment;
 
 public class TabsPagerAdapter extends FragmentStatePagerAdapter {
 	private ToDayTVFragment toDayTVFragment;
 	private AllMatchesFragment allMatchesFragment;
-	private Login login;
+	private RegisterFragment registerFragment;
 
 
 	public TabsPagerAdapter(FragmentManager fm) {
@@ -18,7 +18,7 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter {
 		// TODO Auto-generated constructor stub
 		toDayTVFragment = new ToDayTVFragment();
 		allMatchesFragment = new AllMatchesFragment();
-		login = new Login();
+		registerFragment = new RegisterFragment();
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class TabsPagerAdapter extends FragmentStatePagerAdapter {
 		case 1:
 			return allMatchesFragment;
 		case 2:
-			return login;
+			return registerFragment;
 		}
 
 		return null;

@@ -30,6 +30,7 @@ import bkapt.su1312m.WorldCup2014.DTO.CalendarDTO;
 import bkapt.su1312m.WorldCup2014.Utils.Matches;
 import bkapt.su1312m.WorldCup2014.Utils.ServiceConfig;
 import bkapt.su1312m.WorldCup2014.Utils.ServiceHelper;
+import bkapt.su1312m.WorldCup2014.Utils.ShowDialogUtil;
 
 public class ToDayTVFragment extends Fragment {
 	private TodayTVAdapter adapter;
@@ -59,14 +60,16 @@ public class ToDayTVFragment extends Fragment {
 		if (activeNetwork != null && activeNetwork.isConnected()) {
 			new Getcontacts().execute();
 		} else {
+			ShowDialogUtil.showAlertNetwork(getActivity());
 			// notify user you are not online
-			calendarDAO = new CalendarDAO(getActivity());
-			list = (ArrayList<Matches>) calendarDAO.gettoday();
-			Log.e("", "matches"+ list.size());
-			adapter = new TodayTVAdapter(getActivity(), R.layout.itemrowtodaytv,list);
-		
-			lvtodaytv.setAdapter(adapter);
-	
+			// calendarDAO = new CalendarDAO(getActivity());
+			// list = (ArrayList<Matches>) calendarDAO.gettoday();
+			// Log.e("", "matches"+ list.size());
+			// adapter = new TodayTVAdapter(getActivity(),
+			// R.layout.itemrowtodaytv,list);
+			//
+			// lvtodaytv.setAdapter(adapter);
+
 		}
 		return rootView;
 	}
@@ -92,7 +95,7 @@ public class ToDayTVFragment extends Fragment {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			Log.e("", ""+Jsonstr);
+			Log.e("", "" + Jsonstr);
 			if (Jsonstr != null) {
 				try {
 					JSONObject jsonObject = new JSONObject(Jsonstr);
@@ -109,8 +112,7 @@ public class ToDayTVFragment extends Fragment {
 								time_fight);
 						list.add(matches);
 						Log.e("Today", "---------list.size(): " + list.size());
-						
-						
+
 					}
 
 				} catch (JSONException e) {
@@ -138,12 +140,14 @@ public class ToDayTVFragment extends Fragment {
 		}
 
 	}
+
 	@Override
 	public void onPause() {
 		// TODO Auto-generated method stub
 		Log.e("", "onPause");
 		super.onPause();
 	}
+
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub

@@ -96,7 +96,7 @@ public class CalendarDTO implements Parcelable {
 
 	}
 
-	public static void loadCalenderFromClient() {
+	public void loadCalenderFromClient() {
 		calendarDAO = new CalendarDAO(context);
 		List<Matches> arrayList = new ArrayList<Matches>();
 		arrayList = calendarDAO.getAllcalendar();

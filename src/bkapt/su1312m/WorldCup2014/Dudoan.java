@@ -21,7 +21,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import bkapt.su1312m.WorldCup2014.Utils.NetworkUtils;
@@ -64,7 +63,7 @@ public class Dudoan extends Fragment implements OnClickListener {
 	private EditText EditSoBanThang;
 	private EditText EditSoNguoiCoCungDuDoan;
 	private String identify_number;
-	private LinearLayout bt_logout;
+	private Button bt_logout;
 	private ThongTinDuDoan _ThongTinDuDoan;
 	private SharedPreferences sharedPreferences;
 	private final long PERIOD = 5 * 1000 * 60;
@@ -133,7 +132,7 @@ public class Dudoan extends Fragment implements OnClickListener {
 				.findViewById(R.id.editTextSoBanThangGhiDuoc);
 		EditSoNguoiCoCungDuDoan = (EditText) view
 				.findViewById(R.id.editTextSoNguoiCoCungDuDoan);
-		bt_logout = (LinearLayout) view.findViewById(R.id.bt_log_out);
+		bt_logout = (Button) view.findViewById(R.id.bt_log_out);
 		EditSoNguoiCoCungDuDoan.setTextColor(Color.BLACK);
 		EditSoBanThang.setTextColor(Color.BLACK);
 
@@ -201,8 +200,6 @@ public class Dudoan extends Fragment implements OnClickListener {
 				// DisplayInformation();
 			}
 		} catch (Exception e) {
-			Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG)
-					.show();
 			// getActivity().finish();
 
 		}
@@ -416,14 +413,14 @@ public class Dudoan extends Fragment implements OnClickListener {
 	private void BinhChon() {
 		if (_ThongTinDuDoan.getID_DoiBongVoDich().equals("")) {
 			ButtonDuDoanDoiVoDich.setFocusable(true);
-			Toast.makeText(getActivity(), "Vui long binh chon doi vo dich",
+			Toast.makeText(getActivity(), "Vui lòng bình chọn đội vô địch",
 					Toast.LENGTH_SHORT).show();
 			return;
 		} else if (_ThongTinDuDoan.getID_DoiBongCauThuSuatSac().equals("")
 				|| _ThongTinDuDoan.getName_DoiBongCauThuSuatSac().equals("")) {
 			ButtonDuDoanCauThuSuatSac.setFocusable(true);
 			Toast.makeText(getActivity(),
-					"Vui long binh chon cau thu suat sac nhat",
+					"Vui lòng bình chọn cầu thủ xuất sắc nhất",
 					Toast.LENGTH_SHORT).show();
 			return;
 		} else if (_ThongTinDuDoan.getID_DoiBongCauThuGhiNhieuBan().equals("")
@@ -431,14 +428,14 @@ public class Dudoan extends Fragment implements OnClickListener {
 						.equals("")) {
 			ButtonDuDoanCauThuGhiNhieuBan.setFocusable(true);
 			Toast.makeText(getActivity(),
-					"Vui long binh chon cau thu ghi nhieu ban thang nhat",
+					"Vui lòng bình chọn cầu thủ ghi nhiều bàn thắng nhất",
 					Toast.LENGTH_SHORT).show();
 			return;
 		} else if (EditSoBanThang.getText().toString().equals("")
 				|| Integer.parseInt(EditSoBanThang.getText().toString()) == 0) {
 			EditSoBanThang.setText("");
 			EditSoBanThang.setFocusable(true);
-			Toast.makeText(getActivity(), "So ban thang khong hop le",
+			Toast.makeText(getActivity(), "Số bàn thắng không hợp lệ",
 					Toast.LENGTH_SHORT).show();
 			return;
 		} else if (EditSoNguoiCoCungDuDoan.getText().toString().equals("")
@@ -447,7 +444,7 @@ public class Dudoan extends Fragment implements OnClickListener {
 			EditSoNguoiCoCungDuDoan.setText("");
 			EditSoNguoiCoCungDuDoan.setFocusable(true);
 			Toast.makeText(getActivity(),
-					"So nguoi co cung du doan khong hop le", Toast.LENGTH_SHORT)
+					"Số người dự đoán không hợp lệ", Toast.LENGTH_SHORT)
 					.show();
 			return;
 		}
@@ -478,14 +475,11 @@ public class Dudoan extends Fragment implements OnClickListener {
 			String tmp = JSObj.toString();
 			Log.d("JSON", "tmp: " + tmp);
 			String[] params = new String[] { tmp };
-			Toast.makeText(getActivity(), _ThongTinDuDoan.getCMTND(),
-					Toast.LENGTH_SHORT).show();
 			new PushPredict(getActivity()).execute(params);
 
 		} catch (JSONException e) {
 			Toast.makeText(getActivity(),
-					"Some errors happened, please try again later!",
-					Toast.LENGTH_SHORT).show();
+					"Cố lỗi xảy ra, hãy thử lại", Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		}
 	}
@@ -605,14 +599,14 @@ public class Dudoan extends Fragment implements OnClickListener {
 			super.onPostExecute(result);
 			dialog.dismiss();
 			if (result.contains("true")) {
-				Toast.makeText(getActivity(), "Registered!", Toast.LENGTH_LONG)
+				Toast.makeText(getActivity(), "Bình chọn thành công!", Toast.LENGTH_LONG)
 						.show();
 				sharedPreferences.edit()
 						.putLong("REGISTED", System.currentTimeMillis())
 						.commit();
 			} else {
 				Toast.makeText(getActivity(),
-						"Regist fail, please try again later!",
+						"Có lỗi đã xảy ra, hảy thử lại sau",
 						Toast.LENGTH_SHORT).show();
 			}
 		}

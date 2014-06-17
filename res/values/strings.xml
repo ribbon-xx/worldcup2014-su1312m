@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">WorldCup2014</string>
+    <string name="chua_du_ttin">Bạn chưa nhập đủ thông tin</string>
+    <string name="cmt_error">Chứng minh thư không hợp lệ</string>
+    <string name="check_network">Kiểm tra kết nối mạng</string>
+    <string name="regis_fail">Đăng ký không thành công! Hãy thử lại!</string>
+    <string name="regis_success">Đăng ký thành công!</string> 
 </resources>

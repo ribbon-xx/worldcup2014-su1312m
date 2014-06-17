@@ -19,7 +19,7 @@ public class PagerFrafmentActivity extends ActionBarActivity implements TabListe
 	private ViewPager viewPager;
 	private TabsPagerAdapter mAdapter;
 	private ActionBar actionBar;
-	private String[] tabs = { "ToDay TV", "All Matches", "Predict" };
+	private String[] tabs = { "Hôm nay", "Tất cả", "Bình chọn" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -97,33 +97,9 @@ public class PagerFrafmentActivity extends ActionBarActivity implements TabListe
 		
 	}
 	@Override
-	protected void onPause() {
-		// TODO Auto-generated method stub
-		Log.e("", "onPause");
-		super.onPause();
-	}
-	@Override
-	protected void onResume() {
-		// TODO Auto-generated method stub
-		Log.e("", "onResume");
-		super.onResume();
-	}
-	@Override
-	protected void onStart() {
-		// TODO Auto-generated method stub
-		Log.e("", "onStart");
-		super.onStart();
-	}
-	@Override
 	protected void onStop() {
-		// TODO Auto-generated method stub
 		Log.e("", "onStop");
+		PagerFrafmentActivity.this.finish();
 		super.onStop();
-	}
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		Log.e("", "onDestroy");
-		super.onDestroy();
 	}
 }

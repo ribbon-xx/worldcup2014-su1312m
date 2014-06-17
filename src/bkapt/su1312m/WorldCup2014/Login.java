@@ -89,16 +89,17 @@ public class Login extends Fragment {
 					if (null != toast) {
 						toast.cancel();
 					}
-					toast = Toast.makeText(getActivity(),
-							"Ban chua nhap du thong tin", Toast.LENGTH_SHORT);
+					toast = Toast.makeText(getActivity(), getResources()
+							.getString(R.string.chua_du_ttin),
+							Toast.LENGTH_SHORT);
 					toast.show();
 				} else {
 					if (GlobalVariable.Id_Number.length() < 9) {
 						if (null != toast1) {
 							toast1.cancel();
 						}
-						toast1 = Toast.makeText(getActivity(),
-								"Chứng minh thư không hợp lệ",
+						toast1 = Toast.makeText(getActivity(), getResources()
+								.getString(R.string.cmt_error),
 								Toast.LENGTH_SHORT);
 						toast1.show();
 					} else {
@@ -158,8 +159,10 @@ public class Login extends Fragment {
 							if (toast3 != null) {
 								toast3.cancel();
 							}
-							toast3 = Toast.makeText(getActivity(),
-									"Kiem tra lai ket noi mang",
+							toast3 = Toast.makeText(
+									getActivity(),
+									getResources().getString(
+											R.string.check_network),
 									Toast.LENGTH_LONG);
 							toast3.show();
 						}
@@ -204,9 +207,6 @@ public class Login extends Fragment {
 
 			String response = jsonConfig.httpPost(jsonObject.toString(),
 					GlobalVariable.URL);
-			Log.d("JSONNNNNN", "aaaa " + jsonObject.toString()
-					+ "---response: " + response.toString());
-			// ---------
 			Gson gson = new Gson();
 			RegisterObject registerObject = gson.fromJson(response,
 					RegisterObject.class);
@@ -235,39 +235,31 @@ public class Login extends Fragment {
 			super.onPostExecute(result);
 			dialog.dismiss();
 			if (result[0] == 1) {
-				getActivity().runOnUiThread(new Runnable() {
+				final Dialog dialog_id = new Dialog(getActivity());
+				dialog_id.setTitle("REGISTER");
+				dialog_id.setContentView(R.layout.dialog_login);
+				dialog_id.setCancelable(true);
+				dialog_id.show();
+				Button bt_yes1, bt_cancel1;
+				bt_yes1 = (Button) dialog_id.findViewById(R.id.bt_yes);
+				bt_cancel1 = (Button) dialog_id.findViewById(R.id.bt_no);
+				TextView tv_caption1 = (TextView) dialog_id
+						.findViewById(R.id.tv_noti);
+				tv_caption1.setText("Số CMT của bạn đã được đăng ký");
 
+				bt_cancel1.setOnClickListener(new OnClickListener() {
 					@Override
-					public void run() {
-						final Dialog dialog_id = new Dialog(getActivity());
-						dialog_id.setTitle("REGISTER");
-						dialog_id.setContentView(R.layout.dialog_login);
-						dialog_id.setCancelable(true);
-						dialog_id.show();
-						Button bt_yes1, bt_cancel1;
-						bt_yes1 = (Button) dialog_id.findViewById(R.id.bt_yes);
-						bt_cancel1 = (Button) dialog_id
-								.findViewById(R.id.bt_no);
-						TextView tv_caption1 = (TextView) dialog_id
-								.findViewById(R.id.tv_noti);
-						tv_caption1
-								.setText("Số chứng minh của bạn đã được đăng ký");
-
-						bt_cancel1.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								dialog_id.dismiss();
-							}
-						});
-						bt_yes1.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								Fragment fragment = new Dudoan();
-								((PagerFrafmentActivity) getActivity())
-										.replaceFragment(fragment, TAG_2);
-								dialog_id.dismiss();
-							}
-						});
+					public void onClick(View v) {
+						dialog_id.dismiss();
+					}
+				});
+				bt_yes1.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						Fragment fragment = new Dudoan();
+						((PagerFrafmentActivity) getActivity())
+								.replaceFragment(fragment, null);
+						dialog_id.dismiss();
 					}
 				});
 			}
@@ -276,15 +268,15 @@ public class Login extends Fragment {
 					// Fragment fragment = new Dudoan();
 					// ((PagerFrafmentActivity) getActivity()).replaceFragment(
 					// fragment, TAG_2);
-					Toast.makeText(
-							getActivity(),
-							"Dang ky khong thanh cong vui long kiem tra lai mang hoac duong truyen internet",
+					Toast.makeText(getActivity(),
+							getResources().getString(R.string.regis_fail),
 							Toast.LENGTH_SHORT).show();
 				} else {
 					Fragment fragment = new Dudoan();
 					((PagerFrafmentActivity) getActivity()).replaceFragment(
 							fragment, TAG_2);
-					Toast.makeText(getActivity(), "Ban da dang ky thanh cong",
+					Toast.makeText(getActivity(),
+							getResources().getString(R.string.regis_success),
 							Toast.LENGTH_SHORT).show();
 				}
 

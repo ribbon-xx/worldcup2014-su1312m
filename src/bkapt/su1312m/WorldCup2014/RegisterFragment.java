@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,8 +52,7 @@ public class RegisterFragment extends Fragment {
 		if (savedInstanceState == null) {
 			// if's the first time created
 
-			((PagerFrafmentActivity) getActivity()).replaceFragment(login,
-					TAG_1);
+			((PagerFrafmentActivity) getActivity()).replaceFragment(login, TAG_1);
 		}
 		if (GlobalVariable.check_load == 0) {
 			check_event_end end = new check_event_end(getActivity());
@@ -64,15 +64,13 @@ public class RegisterFragment extends Fragment {
 			if (checkfragment == 0) {
 
 				Fragment fragment = new Login();
-				((PagerFrafmentActivity) getActivity()).replaceFragment(
-						fragment, TAG_1);
+				((PagerFrafmentActivity) getActivity()).replaceFragment(fragment, TAG_1);
 
 			}
 			if (checkfragment == 1) {
 
 				Fragment fragment = new Dudoan();
-				((PagerFrafmentActivity) getActivity()).replaceFragment(
-						fragment, TAG_2);
+				((PagerFrafmentActivity) getActivity()).replaceFragment(fragment, TAG_2);
 
 			}
 		}
@@ -111,15 +109,11 @@ public class RegisterFragment extends Fragment {
 			super.onPostExecute(check_endevent);
 			dialog.dismiss();
 			if (check_endevent.toString().trim().equals("true")) {
-
-				Log.e("", "falseaaaa " + 1);
-
 				Fragment fragment = new EventEnd();
 				((PagerFrafmentActivity) getActivity()).replaceFragment(
 						fragment, TAG_3);
 
 			} else {
-				Log.e("", "falseaaaa" + 0);
 				SharedPreferences sp = PreferenceManager
 						.getDefaultSharedPreferences(getActivity());
 				checkfragment = sp.getInt("CHECK", 0);
@@ -128,7 +122,6 @@ public class RegisterFragment extends Fragment {
 					Fragment fragment = new Login();
 					((PagerFrafmentActivity) getActivity()).replaceFragment(
 							fragment, TAG_1);
-
 				}
 				if (checkfragment == 1) {
 
@@ -168,6 +161,9 @@ public class RegisterFragment extends Fragment {
 			GlobalVariable.check_load = 1;
 			return check_endevent;
 		}
-
 	}
+	
+	public void replaceFragment(Fragment fragment, String TAG){
+		((PagerFrafmentActivity) getActivity()).replaceFragment(fragment, TAG);
+    }
 }

@@ -12,8 +12,8 @@ import android.widget.Toast;
 public class Splash extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		setContentView(R.layout.splash);
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.splash);
 		final ConnectivityManager conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		final NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
 		if (activeNetwork != null && activeNetwork.isConnected()) {

@@ -30,7 +30,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="7dp"
-                    android:text="REGISTER"
+                    android:gravity="center"
+                    android:text="ĐĂNG KÝ THAM GIA CHƯƠNG TRÌNH"
                     android:textColor="#009900"
                     android:textSize="30dp" />
 
@@ -45,8 +46,9 @@
                         android:id="@+id/tv_name"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="FULL NAME"
-                        android:textColor="#ff9900" />
+                        android:text="Họ và tên"
+                        android:textSize="16sp"
+                        android:textColor="#009933" />
 
                     <EditText
                         android:id="@+id/ed_name"
@@ -56,11 +58,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
                         android:background="#ffffff"
-                        android:hint="Enter your name"
+                        android:hint="Nhập tên"
                         android:imeOptions="actionNext"
+                        android:paddingLeft="5dp"
                         android:singleLine="true"
-                        android:textColor="#999999"
-                        android:paddingLeft="5dp" />
+                        android:textColor="#999999" />
                     
                 </LinearLayout>
 
@@ -74,8 +76,9 @@
                         android:id="@+id/tv_phone"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="PHONE NUMBER"
-                        android:textColor="#ff9900" />
+                        android:text="Điện thoại"
+                        android:textSize="16sp"
+                        android:textColor="#009933" />
 
                     <EditText
                         android:id="@+id/ed_phone"
@@ -85,12 +88,13 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
                         android:background="#ffffff"
-                        android:hint="Enter your phone"
+                        android:hint="Nhập số điện thoại"
                         android:imeOptions="actionNext"
                         android:inputType="number"
+                        android:paddingLeft="5dp"
                         android:singleLine="true"
-                        android:textColor="#999999"
-                        android:paddingLeft="5dp" />
+                        android:textColor="#999999" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -103,8 +107,9 @@
                         android:id="@+id/tv_mail"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="EMAIL"
-                        android:textColor="#ff9900" />
+                        android:text="Email"
+                        android:textSize="16sp"
+                        android:textColor="#009933" />
 
                     <EditText
                         android:id="@+id/ed_mail"
@@ -131,8 +136,9 @@
                         android:id="@+id/tv_id_number"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="ID Identification"
-                        android:textColor="#ff9900" />
+                        android:text="Số CMT"
+                        android:textSize="16sp"
+                        android:textColor="#009933" />
 
                     <EditText
                         android:id="@+id/ed_id_number"
@@ -142,13 +148,13 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
                         android:background="#ffffff"
-                        android:hint="Enter your ID(CMTND)"
+                        android:hint="Dùng để nhận giải"
                         android:imeOptions="actionNext"
                         android:inputType="number"
-                        android:singleLine="true"
-                        android:textColor="#999999"
                         android:paddingLeft="5dp"
-                         />
+                        android:singleLine="true"
+                        android:textColor="#999999" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -161,8 +167,9 @@
                         android:id="@+id/tv_add"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="ADDRESS"
-                        android:textColor="#ff9900" />
+                        android:text="Địa chỉ"
+                        android:textSize="16sp"
+                        android:textColor="#009933" />
 
                     <EditText
                         android:id="@+id/ed_add"
@@ -172,11 +179,12 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
                         android:background="#ffffff"
-                        android:hint="Enter your address"
+                        android:hint="Nhập địa chỉ"
                         android:imeOptions="actionNext"
+                        android:paddingLeft="5dp"
                         android:singleLine="true"
-                        android:textColor="#999999"
-                        android:paddingLeft="5dp" />
+                        android:textColor="#999999" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -189,8 +197,9 @@
                         android:id="@+id/tv_work"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="COMPANY"
-                        android:textColor="#ff9900" />
+                        android:text="Nơi làm việc"
+                        android:textSize="16sp"
+                        android:textColor="#009933" />
 
                     <EditText
                         android:id="@+id/ed_work"
@@ -200,10 +209,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
                         android:background="#ffffff"
-                        android:hint="Enter your company"
+                        android:hint="Nhập cty/trường"
+                        android:paddingLeft="5dp"
                         android:singleLine="true"
-                        android:textColor="#999999"
-                        android:paddingLeft="5dp" />
+                        android:textColor="#999999" />
+
                 </LinearLayout>
 
                 <Button
@@ -213,8 +223,9 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="30dp"
                     android:layout_marginTop="20dp"
-                    android:background="#ff6600"
-                    android:text="REGISTER"
+                    android:background="#ff0000"
+                    android:text="Đăng ký"
+                    android:textSize="18sp"
                     android:textColor="#ffffff" />
             </LinearLayout>
         </ScrollView>
