@@ -1,4 +1,11 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding//src/bkapt/su1312m/WorldCup2014/ShowDialogVote.java=UTF-8
 encoding//src/bkapt/su1312m/WorldCup2014/TEAM.java=UTF-8
 encoding//src/bkapt/su1312m/WorldCup2014/Team_ArrayAdapter.java=UTF-8
+=======
+encoding//src/bkapt/su1312m/WorldCup2014/Fragment/AllMatchesFragment.java=UTF-8
+encoding//src/bkapt/su1312m/WorldCup2014/Fragment/ToDayTVFragment.java=UTF-8
+encoding//src/bkapt/su1312m/WorldCup2014/PagerFrafmentActivity.java=UTF-8
+encoding//src/bkapt/su1312m/WorldCup2014/Splash.java=UTF-8
+>>>>>>> ba8922697b534d3423a2d013f4d6cbade4de9154

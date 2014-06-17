@@ -112,100 +112,100 @@ public class CalendarListAdapter extends BaseExpandableListAdapter {
     }
 
     private void getFlag(ImageView iv, String flag) {
-        if (flag.equals("brazil")) {
+        if (flag.equalsIgnoreCase("brazil")) {
             iv.setImageResource(R.drawable.icon_brazil);
 
-        } else if (flag.equals("Croatia")) {
+        } else if (flag.equalsIgnoreCase("Croatia")) {
             iv.setImageResource(R.drawable.icon_croatia);
 
-        } else if (flag.equals("mexico")) {
+        } else if (flag.equalsIgnoreCase("mexico")) {
             iv.setImageResource(R.drawable.icon_mexico);
 
-        } else if (flag.equals("cameroon")) {
+        } else if (flag.equalsIgnoreCase("cameroon")) {
             iv.setImageResource(R.drawable.icon_cameroon);
 
-        } else if (flag.equals("spain")) {
+        } else if (flag.equalsIgnoreCase("spain")) {
             iv.setImageResource(R.drawable.icon_spain);
 
-        } else if (flag.equals("Netherlands")) {
+        } else if (flag.equalsIgnoreCase("Netherlands")) {
             iv.setImageResource(R.drawable.icon_netherland);
 
-        } else if (flag.equals("Chile")) {
+        } else if (flag.equalsIgnoreCase("Chile")) {
             iv.setImageResource(R.drawable.icon_chile);
 
-        } else if (flag.equals("Australia")) {
+        } else if (flag.equalsIgnoreCase("Australia")) {
             iv.setImageResource(R.drawable.icon_australia);
 
-        } else if (flag.equals("Colombia")) {
+        } else if (flag.equalsIgnoreCase("Colombia")) {
             iv.setImageResource(R.drawable.icon_colombia);
 
-        } else if (flag.equals("Greece")) {
+        } else if (flag.equalsIgnoreCase("Greece")) {
             iv.setImageResource(R.drawable.icon_greece);
 
-        } else if (flag.equals("Ivory Coast")) {
+        } else if (flag.equalsIgnoreCase("Cote Ivoire")) {
             iv.setImageResource(R.drawable.icon_ivory_coast);
 
-        } else if (flag.equals("Japan")) {
+        } else if (flag.equalsIgnoreCase("Japan")) {
             iv.setImageResource(R.drawable.icon_japan);
 
-        } else if (flag.equals("Uruguay")) {
+        } else if (flag.equalsIgnoreCase("Uruguay")) {
             iv.setImageResource(R.drawable.icon_uruguay);
 
-        } else if (flag.equals("Costa Rica")) {
+        } else if (flag.equalsIgnoreCase("Costa Rica")) {
             iv.setImageResource(R.drawable.icon_costa_rica);
 
-        } else if (flag.equals("England")) {
+        } else if (flag.equalsIgnoreCase("England")) {
             iv.setImageResource(R.drawable.icon_england);
 
-        } else if (flag.equals("Italy")) {
+        } else if (flag.equalsIgnoreCase("Italy")) {
             iv.setImageResource(R.drawable.icon_italy);
 
-        } else if (flag.equals("Switzerland")) {
+        } else if (flag.equalsIgnoreCase("Switzerland")) {
             iv.setImageResource(R.drawable.icon_switzerland);
 
-        } else if (flag.equals("Ecuador")) {
+        } else if (flag.equalsIgnoreCase("Ecuador")) {
             iv.setImageResource(R.drawable.icon_ecuador);
 
-        } else if (flag.equals("France")) {
+        } else if (flag.equalsIgnoreCase("France")) {
             iv.setImageResource(R.drawable.icon_france);
 
-        } else if (flag.equals("Honduras")) {
+        } else if (flag.equalsIgnoreCase("Honduras")) {
             iv.setImageResource(R.drawable.icon_honduras);
 
-        } else if (flag.equals("Argentina")) {
+        } else if (flag.equalsIgnoreCase("Argentina")) {
             iv.setImageResource(R.drawable.icon_argentina);
 
-        } else if (flag.equals("Bosnia and Herzegovina")) {
+        } else if (flag.equalsIgnoreCase("Bosnia and Herzegovina")) {
             iv.setImageResource(R.drawable.icon_bosnia);
 
-        } else if (flag.equals("Iran")) {
+        } else if (flag.equalsIgnoreCase("Iran")) {
             iv.setImageResource(R.drawable.icon_iran);
 
-        } else if (flag.equals("Nigeria")) {
+        } else if (flag.equalsIgnoreCase("Nigeria")) {
             iv.setImageResource(R.drawable.icon_nigeria);
 
-        } else if (flag.equals("Germany")) {
+        } else if (flag.equalsIgnoreCase("Germany")) {
             iv.setImageResource(R.drawable.icon_germany);
 
-        } else if (flag.equals("Portugal")) {
+        } else if (flag.equalsIgnoreCase("Portugal")) {
             iv.setImageResource(R.drawable.icon_portugal);
 
-        } else if (flag.equals("Ghana")) {
+        } else if (flag.equalsIgnoreCase("Ghana")) {
             iv.setImageResource(R.drawable.icon_ghana);
 
-        } else if (flag.equals("USA")) {
+        } else if (flag.equalsIgnoreCase("USA")) {
             iv.setImageResource(R.drawable.icon_usa);
 
-        } else if (flag.equals("Belgium")) {
+        } else if (flag.equalsIgnoreCase("Belgium")) {
             iv.setImageResource(R.drawable.icon_belgium);
 
-        } else if (flag.equals("Algeria")) {
+        } else if (flag.equalsIgnoreCase("Algeria")) {
             iv.setImageResource(R.drawable.icon_algeria);
 
-        } else if (flag.equals("Russia")) {
+        } else if (flag.equalsIgnoreCase("Russia")) {
             iv.setImageResource(R.drawable.icon_russia);
 
-        } else if (flag.equals("Korea")) {
+        } else if (flag.equalsIgnoreCase("Korea")) {
             iv.setImageResource(R.drawable.icon_korea);
 
         } else {

@@ -1,6 +1,9 @@
 package bkapt.su1312m.WorldCup2014;
 
-
+import bkapt.su1312m.WorldCup2014.Adapters.TabsPagerAdapter;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -9,7 +12,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBar.Tab;
 import android.support.v7.app.ActionBar.TabListener;
 import android.support.v7.app.ActionBarActivity;
-
+import android.util.Log;
 
 public class PagerFrafmentActivity extends ActionBarActivity implements TabListener {
 
@@ -22,14 +25,17 @@ public class PagerFrafmentActivity extends ActionBarActivity implements TabListe
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 		viewPager = (ViewPager) findViewById(R.id.pager);
+		viewPager.setOffscreenPageLimit(3);
 		actionBar = getSupportActionBar();
 		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
 
 		viewPager.setAdapter(mAdapter);
 		actionBar.setHomeButtonEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+		actionBar.setStackedBackgroundDrawable(getResources().getDrawable(R.drawable.background_tabs));
+		actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.background_tabs));
 
 		for (String tab_name : tabs) {
 			actionBar.addTab(actionBar.newTab().setText(tab_name)
@@ -89,5 +95,35 @@ public class PagerFrafmentActivity extends ActionBarActivity implements TabListe
 	public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		Log.e("", "onPause");
+		super.onPause();
+	}
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		Log.e("", "onResume");
+		super.onResume();
+	}
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		Log.e("", "onStart");
+		super.onStart();
+	}
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		Log.e("", "onStop");
+		super.onStop();
+	}
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		Log.e("", "onDestroy");
+		super.onDestroy();
 	}
 }
