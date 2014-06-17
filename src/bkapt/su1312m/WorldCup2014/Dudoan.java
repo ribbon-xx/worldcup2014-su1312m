@@ -67,9 +67,8 @@ public class Dudoan extends Fragment implements OnClickListener {
 	private LinearLayout bt_logout;
 	private ThongTinDuDoan _ThongTinDuDoan;
 	private SharedPreferences sharedPreferences;
-	private final long PERIOD = 5000;// 5 * 1000 * 60;
+	private final long PERIOD = 5 * 1000 * 60;
 	private Toast warningTimePredict;
-
 	private DATA _DATA;
 
 	@Override
@@ -159,7 +158,6 @@ public class Dudoan extends Fragment implements OnClickListener {
 		TextViewTieuDeCauThuSuatSac.setTextColor(Color.BLACK);
 		TextViewTieuDeDoiBongGhiNhieuBan.setTextColor(Color.BLACK);
 		TextViewTieuDeThongTinKhac.setTextColor(Color.BLACK);
-
 	}
 
 	private void LoadAndSetDataFromServices() {
@@ -181,7 +179,6 @@ public class Dudoan extends Fragment implements OnClickListener {
 					response, RegisterWrapperObject.class);
 			RegisterObject registerObject = registerWrapperObject.registerObjects
 					.get(0);
-
 			if (registerObject != null && !registerObject.team_ID.equals("")) {
 				_ThongTinDuDoan.setID_DoiBongVoDich(registerObject.team_ID);
 
@@ -204,7 +201,6 @@ public class Dudoan extends Fragment implements OnClickListener {
 				// DisplayInformation();
 			}
 		} catch (Exception e) {
-
 			Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG)
 					.show();
 			// getActivity().finish();
@@ -274,7 +270,6 @@ public class Dudoan extends Fragment implements OnClickListener {
 				.getDrawable(IMG[2]));
 		ImageViewLogo_CauThuSuatSac.setImageDrawable(this.getResources()
 				.getDrawable(IMG[3]));
-
 		ImageViewLogo_DoiBongCauThuGhiNhieuBan.setImageDrawable(this
 				.getResources().getDrawable(IMG[4]));
 		ImageViewLogo_CauThuGhiNhieuBan.setImageDrawable(this.getResources()
