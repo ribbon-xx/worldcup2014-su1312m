@@ -26,7 +26,6 @@ import bkapt.su1312m.WorldCup2014.R;
 import bkapt.su1312m.WorldCup2014.Adapters.TodayTVAdapter;
 import bkapt.su1312m.WorldCup2014.Adapters.TransparentProgressDialog;
 import bkapt.su1312m.WorldCup2014.DAO.CalendarDAO;
-import bkapt.su1312m.WorldCup2014.DAO.CalenderEntity;
 import bkapt.su1312m.WorldCup2014.DTO.CalendarDTO;
 import bkapt.su1312m.WorldCup2014.Utils.Matches;
 import bkapt.su1312m.WorldCup2014.Utils.ServiceConfig;

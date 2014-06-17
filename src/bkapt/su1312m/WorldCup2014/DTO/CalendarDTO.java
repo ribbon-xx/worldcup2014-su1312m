@@ -12,7 +12,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 import bkapt.su1312m.WorldCup2014.DAO.CalendarDAO;
-import bkapt.su1312m.WorldCup2014.DAO.CalenderEntity;
 import bkapt.su1312m.WorldCup2014.DefintConstant.UrlServices;
 import bkapt.su1312m.WorldCup2014.Utils.JSONParser;
 import bkapt.su1312m.WorldCup2014.Utils.Matches;
