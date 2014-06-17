@@ -8,6 +8,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -34,7 +36,7 @@ import com.google.gson.Gson;
  * Created by My pc on 9/6/2014.
  */
 public class Login extends Fragment {
-	
+
 	private final String TAG = "Login";
 
 	private Button bt_login;
@@ -45,6 +47,7 @@ public class Login extends Fragment {
 	private UserDAO userDAO;
 	private UserDTO userDTO;
 	private EditText ed_name, ed_phone, ed_mail, ed_id_number, ed_add, ed_work;
+	private Toast toast, toast1, toast3;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,8 +63,9 @@ public class Login extends Fragment {
 		ed_add = (EditText) view.findViewById(R.id.ed_add);
 		ed_work = (EditText) view.findViewById(R.id.ed_work);
 		userDAO = new UserDAO(getActivity());
+
 		bt_login.setOnClickListener(new View.OnClickListener() {
-		
+
 			@Override
 			public void onClick(View v) {
 				GlobalVariable.Name = ed_name.getText().toString().trim();
@@ -82,42 +86,87 @@ public class Login extends Fragment {
 						|| GlobalVariable.Id_Number.equals("")
 						|| GlobalVariable.Add.equals("")
 						|| GlobalVariable.Work.equals("")) {
-					Toast.makeText(getActivity(), "Ban chua nhap du thong tin",
-							Toast.LENGTH_SHORT).show();
+					if (null != toast) {
+						toast.cancel();
+					}
+					toast = Toast.makeText(getActivity(),
+							"Ban chua nhap du thong tin", Toast.LENGTH_SHORT);
+					toast.show();
 				} else {
-					// String[] asyncTaskParams = new String[] {};
-					final Dialog dialog_confirm = new Dialog(getActivity());
-					dialog_confirm.setTitle("REGISTER");
-					dialog_confirm.setContentView(R.layout.dialog_login);
-					dialog_confirm.setCancelable(true);
-					dialog_confirm.show();
-					Button bt_yes, bt_cancel;
-					bt_yes = (Button) dialog_confirm.findViewById(R.id.bt_yes);
-					bt_cancel = (Button) dialog_confirm
-							.findViewById(R.id.bt_no);
-					bt_cancel.setOnClickListener(new OnClickListener() {
-
-						@Override
-						public void onClick(View v) {
-							// TODO Auto-generated method stub
-							dialog_confirm.dismiss();
+					if (GlobalVariable.Id_Number.length() < 9) {
+						if (null != toast1) {
+							toast1.cancel();
 						}
-					});
-					bt_yes.setOnClickListener(new OnClickListener() {
-
-						@Override
-						public void onClick(View v) {
-							// TODO Auto-generated method stub
-							dialog_confirm.dismiss(); 
-							userDTO = new UserDTO(GlobalVariable.Name,Integer.parseInt(GlobalVariable.Phone),GlobalVariable.Mail, Integer.parseInt(GlobalVariable.Id_Number),GlobalVariable.Add, GlobalVariable.Work,0,"",0,"",0);
-	                           long result= userDAO.insertuser(userDTO);
-	                            Log.d(TAG,"result: "+result);
-							
-							Check_Register check_Register = new Check_Register(
+						toast1 = Toast.makeText(getActivity(),
+								"Chứng minh thư không hợp lệ",
+								Toast.LENGTH_SHORT);
+						toast1.show();
+					} else {
+						final ConnectivityManager conMgr = (ConnectivityManager) getActivity()
+								.getSystemService(Context.CONNECTIVITY_SERVICE);
+						final NetworkInfo activeNetwork = conMgr
+								.getActiveNetworkInfo();
+						if (activeNetwork != null
+								&& activeNetwork.isConnected()) {
+							// notify user you are online
+							savePreferences("ID", GlobalVariable.Id_Number);
+							final Dialog dialog_confirm = new Dialog(
 									getActivity());
-							check_Register.execute();
+							dialog_confirm.setTitle("REGISTER");
+							dialog_confirm
+									.setContentView(R.layout.dialog_login);
+							dialog_confirm.setCancelable(true);
+							dialog_confirm.show();
+							Button bt_yes, bt_cancel;
+							bt_yes = (Button) dialog_confirm
+									.findViewById(R.id.bt_yes);
+							bt_cancel = (Button) dialog_confirm
+									.findViewById(R.id.bt_no);
+							bt_cancel.setOnClickListener(new OnClickListener() {
+
+								@Override
+								public void onClick(View v) {
+									// TODO Auto-generated method stub
+									dialog_confirm.dismiss();
+								}
+							});
+							bt_yes.setOnClickListener(new OnClickListener() {
+
+								@Override
+								public void onClick(View v) {
+									// TODO Auto-generated method stub
+									dialog_confirm.dismiss();
+									// userDTO = new UserDTO(
+									// GlobalVariable.Name,
+									// Integer.parseInt(GlobalVariable.Phone),
+									// GlobalVariable.Mail,
+									// Integer.parseInt(GlobalVariable.Id_Number),
+									// GlobalVariable.Add,
+									// GlobalVariable.Work, 0, "", 0, "",
+									// 0);
+									// long result =
+									// userDAO.insertuser(userDTO);
+									// Log.d(TAG, "result: " + result);
+
+									Check_Register check_Register = new Check_Register(
+											getActivity());
+									check_Register.execute();
+								}
+							});
+						} else {
+							// notify user you are not online
+							if (toast3 != null) {
+								toast3.cancel();
+							}
+							toast3 = Toast.makeText(getActivity(),
+									"Kiem tra lai ket noi mang",
+									Toast.LENGTH_LONG);
+							toast3.show();
 						}
-					});
+
+					}
+					// String[] asyncTaskParams = new String[] {};
+
 				}
 
 			}
@@ -250,6 +299,15 @@ public class Login extends Fragment {
 				.getDefaultSharedPreferences(getActivity());
 		Editor edit = sp.edit();
 		edit.putInt(key, value);
+		edit.commit();
+	}
+
+	private void savePreferences(String key, String value) {
+		// TODO Auto-generated method stub
+		SharedPreferences sp = PreferenceManager
+				.getDefaultSharedPreferences(getActivity());
+		Editor edit = sp.edit();
+		edit.putString(key, value);
 		edit.commit();
 	}
 

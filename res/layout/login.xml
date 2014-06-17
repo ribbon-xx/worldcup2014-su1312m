@@ -1,183 +1,222 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="#009900"
-
-                >
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffff66" >
 
     <FrameLayout
-            android:id="@+id/frame"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true" >
-
+        android:id="@+id/frame"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
 
         <ScrollView
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/scrollView">
-        <LinearLayout
+            android:id="@+id/scrollView"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp" >
+                android:layout_marginTop="10dp"
+                android:orientation="vertical" >
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="BACHKHOA APTECH"
-                    android:textColor="#ffcc0099"
-                    android:textSize="30dp" />
-
-            <TextView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="7dp"
                     android:text="REGISTER"
-                    android:textColor="#ff9900"
+                    android:textColor="#009900"
                     android:textSize="30dp" />
 
-            <LinearLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_marginTop="15dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                <TextView
+                    <TextView
                         android:id="@+id/tv_name"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="HỌ VÀ TÊN"
-                        android:textColor="#ffcc0099" />
+                        android:text="FULL NAME"
+                        android:textColor="#ff9900" />
 
-                <EditText
+                    <EditText
                         android:id="@+id/ed_name"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#ffffff"
+                        android:hint="Enter your name"
+                        android:imeOptions="actionNext"
                         android:singleLine="true"
-                        android:imeOptions="actionNext"/>
-            </LinearLayout>
+                        android:textColor="#999999"
+                        android:paddingLeft="5dp" />
+                    
+                </LinearLayout>
 
-            <LinearLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
-                <TextView
+                    <TextView
                         android:id="@+id/tv_phone"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="SỐ ĐIỆN THOẠI"
-                        android:textColor="#ffcc0099" />
+                        android:text="PHONE NUMBER"
+                        android:textColor="#ff9900" />
 
-                <EditText
+                    <EditText
                         android:id="@+id/ed_phone"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
                         android:layout_marginLeft="10dp"
-                        android:singleLine="true"
+                        android:layout_marginTop="5dp"
+                        android:background="#ffffff"
+                        android:hint="Enter your phone"
                         android:imeOptions="actionNext"
-                        android:inputType="number"/>
-            </LinearLayout>
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textColor="#999999"
+                        android:paddingLeft="5dp" />
+                </LinearLayout>
 
-            <LinearLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal" >
-                <TextView
+
+                    <TextView
                         android:id="@+id/tv_mail"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="EMAIL"
-                        android:textColor="#ffcc0099" />
+                        android:textColor="#ff9900" />
 
-                <EditText
+                    <EditText
                         android:id="@+id/ed_mail"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
                         android:layout_marginLeft="10dp"
-                        android:singleLine="true"
+                        android:layout_marginTop="5dp"
+                        android:background="#ffffff"
+                        android:hint="abc@example.com "
                         android:imeOptions="actionNext"
-                         />
-            </LinearLayout>
-            <LinearLayout
+                        android:singleLine="true"
+                        android:textColor="#999999"
+                        android:paddingLeft="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal" >
-                <TextView
+
+                    <TextView
                         android:id="@+id/tv_id_number"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="SỐ CMT"
-                        android:textColor="#ffcc0099" />
+                        android:text="ID Identification"
+                        android:textColor="#ff9900" />
 
-                <EditText
+                    <EditText
                         android:id="@+id/ed_id_number"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
                         android:layout_marginLeft="10dp"
-                        android:singleLine="true"
+                        android:layout_marginTop="5dp"
+                        android:background="#ffffff"
+                        android:hint="Enter your ID(CMTND)"
                         android:imeOptions="actionNext"
-                        android:inputType="number" />
-            </LinearLayout>
-            <LinearLayout
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textColor="#999999"
+                        android:paddingLeft="5dp"
+                         />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal" >
-                <TextView
+
+                    <TextView
                         android:id="@+id/tv_add"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="ĐỊA CHỈ"
-                        android:textColor="#ffcc0099" />
+                        android:text="ADDRESS"
+                        android:textColor="#ff9900" />
 
-                <EditText
+                    <EditText
                         android:id="@+id/ed_add"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#ffffff"
+                        android:hint="Enter your address"
+                        android:imeOptions="actionNext"
                         android:singleLine="true"
-                        android:imeOptions="actionNext"/>
-            </LinearLayout>
-            <LinearLayout
+                        android:textColor="#999999"
+                        android:paddingLeft="5dp" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal" >
-                <TextView
+
+                    <TextView
                         android:id="@+id/tv_work"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="NƠI LÀM VIỆC"
-                        android:textColor="#ffcc0099" />
+                        android:text="COMPANY"
+                        android:textColor="#ff9900" />
 
-                <EditText
+                    <EditText
                         android:id="@+id/ed_work"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:background="#ffffff"
+                        android:hint="Enter your company"
                         android:singleLine="true"
-                        />
-            </LinearLayout>
+                        android:textColor="#999999"
+                        android:paddingLeft="5dp" />
+                </LinearLayout>
 
-            <Button
+                <Button
                     android:id="@+id/bt_login"
                     android:layout_width="100dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="30dp"
                     android:layout_marginTop="20dp"
                     android:background="#ff6600"
                     android:text="REGISTER"
-                    android:textColor="#ffffff"
-                    android:layout_marginBottom="30dp"/>
-        </LinearLayout>
+                    android:textColor="#ffffff" />
+            </LinearLayout>
         </ScrollView>
     </FrameLayout>
 
